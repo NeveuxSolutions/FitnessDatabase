@@ -1,12 +1,12 @@
 package csulb.cecs323.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Program {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long programId;
     private Date startDate;
     private Date endDate;
     private String programDescription;

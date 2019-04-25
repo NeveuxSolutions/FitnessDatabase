@@ -1,12 +1,12 @@
 package csulb.cecs323.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 public class Workout {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long workoutId;
     private Timestamp workoutStartTime;
     private String workoutDescription;
 
