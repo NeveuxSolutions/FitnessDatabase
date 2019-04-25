@@ -73,19 +73,33 @@ public class Homework4Application {
       this.entityManager.persist(graceHopper);
    }
 
-   public void createFoodEntity() {
+    /**
+     * Method to create a food Entity
+     * @param name the name of the food
+     * @param protein the amount of protein/gram
+     * @param carb the amount of carbs/gram
+     * @param fat the amount of fat/gram
+     * @param type the type of food classifier (PROTEIN/CARBOHYDRATE/FAT)
+     */
+   public void createFoodEntity(String name, double protein, double carb, double fat, FoodType type) {
        LOGGER.fine("Creating Food Object");
-
-       Food chicken = new Food();
-       chicken.setName("Chicken Breast");
-       chicken.setProteinGram(.31);
-       chicken.setCarbGram(0.0);
-       chicken.setFatGram(.036);
-       chicken.setFoodType(FoodType.PROTEIN);
-
+       //General food object
+       Food food = new Food();
+       food.setName(name);
+       food.setProteinGram(protein);
+       food.setCarbGram(carb);
+       food.setFatGram(fat);
+       switch(type) {
+           case PROTEIN: food.setFoodType(FoodType.PROTEIN); break;
+           case CARBOHYDRATE: food.setFoodType(FoodType.CARBOHYDRATE); break;
+           case FAT: food.setFoodType(FoodType.FAT); break;
+               default: System.out.println("No matching type found");
+       }
        LOGGER.fine("Persisting Food object to DB");
-       this.entityManager.persist(chicken);
+       this.entityManager.persist(food);
    }
+
+
 
 
 }
