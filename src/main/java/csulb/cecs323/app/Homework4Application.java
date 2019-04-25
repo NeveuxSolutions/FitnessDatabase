@@ -12,7 +12,9 @@
 
 package csulb.cecs323.app;
 
+import csulb.cecs323.model.FoodType;
 import csulb.cecs323.model.Student;
+import csulb.cecs323.model.Food;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -70,5 +72,20 @@ public class Homework4Application {
       LOGGER.fine("Persisting Student object to DB");
       this.entityManager.persist(graceHopper);
    }
+
+   public void createFoodEntity() {
+       LOGGER.fine("Creating Food Object");
+
+       Food chicken = new Food();
+       chicken.setName("Chicken Breast");
+       chicken.setProteinGram(.31);
+       chicken.setCarbGram(0.0);
+       chicken.setFatGram(.036);
+       chicken.setFoodType(FoodType.PROTEIN);
+
+       LOGGER.fine("Persisting Food object to DB");
+       this.entityManager.persist(chicken);
+   }
+
 
 }
