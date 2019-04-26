@@ -7,7 +7,7 @@ public class MealPlan {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanId;
     private String mealPlanName;
-    private int numberMeals;
+    private int numberOfMeals; //change to @ElementCollection...Collection<Integer>
     private String dietDescription;
 
     @Enumerated(EnumType.STRING)
@@ -30,11 +30,11 @@ public class MealPlan {
     }
 
     public int getNumberMeals() {
-        return numberMeals;
+        return numberOfMeals;
     }
 
     public void setNumberMeals(int numberMeals) {
-        this.numberMeals = numberMeals;
+        this.numberOfMeals = numberMeals;
     }
 
     public String getDietDescription() {

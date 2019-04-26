@@ -37,6 +37,7 @@ public class Homework4Application {
    }
 
    public static void main(String[] args) {
+       System.out.println(System.getProperty("java.class.path"));
       LOGGER.fine("Creating EntityManagerFactory and EntityManager");
       EntityManagerFactory factory = Persistence.createEntityManagerFactory("homework4_PU");
       EntityManager manager = factory.createEntityManager();
