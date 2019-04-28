@@ -9,7 +9,7 @@ public class Routine {
     private long routineId;
     private String routineName;
     private String routineDescription;
-
+    //@TODO Dropped routineType? seems too close to training style and may be a repeated attribute from other enums
     @Enumerated(EnumType.STRING)
     private TrainingStyle trainingStyle;
 

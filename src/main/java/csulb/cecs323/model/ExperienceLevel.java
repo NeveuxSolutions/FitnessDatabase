@@ -1,6 +1,6 @@
 package csulb.cecs323.model;
 
-public enum Experience {
+public enum ExperienceLevel {
     BEGINNER,
     INTERMEDIATE,
     ADVANCED,

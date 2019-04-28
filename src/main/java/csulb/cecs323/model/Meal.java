@@ -17,6 +17,7 @@ public class Meal {
     private double totalFat;
     private double totalCalories;
 
+    //@TODO should caloric totals have getters and setters as they are derived?
     public long getMealId() {
         return mealId;
     }

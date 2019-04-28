@@ -7,7 +7,8 @@ public class MealPlan {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanId;
     private String mealPlanName;
-    private int numberOfMeals; //change to @ElementCollection...Collection<Integer>
+    //@TODO sort out meal quantities int enum ??? change to @ElementCollection...Collection<Integer>
+    private int numberOfMeals;
     private String dietDescription;
 
     @Enumerated(EnumType.STRING)
