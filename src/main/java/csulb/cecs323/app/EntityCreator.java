@@ -100,7 +100,7 @@ public class EntityCreator {
             checkIn.setBodyFat(fatPercentages[i]);
             checkIn.setCheckInTimeStamp(timestamps[i]);
             checkIn.setWeight(weights[i]);
-            users[clientsIds[i]].addCheckIn(checkIn); //not sure if this works whatsoever can't possibly be right
+         //   users[clientsIds[i]].addCheckIn(checkIn); //not sure if this works whatsoever can't possibly be right
 
             entityManager.persist(checkIn);
             tx.commit();

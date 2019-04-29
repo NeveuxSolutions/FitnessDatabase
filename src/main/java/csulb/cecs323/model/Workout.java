@@ -2,11 +2,13 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import javax.validation.constraints.*;
 
 @Entity
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long workoutId;
+    @Past
     private Timestamp workoutStartTime;
 
     @Column(nullable=false)

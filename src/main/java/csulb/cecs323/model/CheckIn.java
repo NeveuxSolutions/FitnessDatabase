@@ -5,13 +5,14 @@ import java.sql.Timestamp;
 
 @Entity
 public class CheckIn {
-    @Id
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int checkInId;
     private Timestamp checkInTimeStamp;
     private double weight;
     private double bodyFat;
     //@TODO review/insert cascades
     @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
-    @JoinColumn(name="CLIENTID") //renames column in db
+    @JoinColumn(foreignKey = @ForeignKey(name="CLIENTID")) //renames column in db
     private User userId;
 
     public Timestamp getCheckInTimeStamp() {

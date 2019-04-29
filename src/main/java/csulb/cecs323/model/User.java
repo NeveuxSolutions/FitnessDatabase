@@ -15,7 +15,7 @@ import java.util.List;
 )
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //need to do the one to many?
+    @PrimaryKeyJoinColumn @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //need to do the one to many?
     private int userId;
 
     @Enumerated(EnumType.STRING)
@@ -39,9 +39,9 @@ public class User {
     @OneToMany(mappedBy="userId")
     private java.util.List<CheckIn> checkIns = new ArrayList<>();
 
-    public void addCheckIn(CheckIn appointment){
-        checkIns.add(appointment);
-    }
+    //public void addCheckIn(CheckIn appointment){
+     //   checkIns.add(appointment);
+   // }
 
     public int getUserId() {
         return userId;
