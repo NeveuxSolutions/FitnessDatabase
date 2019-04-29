@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class EntityCreator {
     private static final Logger LOGGER =  Logger.getLogger(Homework4Application.class.getName());
     private EntityManager entityManager;
+    private User[] users = new User[20];
 
     //@TODO drop student table
     public EntityCreator(EntityManager entityManager){
@@ -70,6 +71,8 @@ public class EntityCreator {
             user.setAge(ages[i]);
             user.setHeight(heights[i]);
             user.setUserExperienceLevel(experience[i]);
+            //@TODO find the proper way to link users and checkins
+            users[i] = user; //janky workaround for now
 
             entityManager.persist(user);
             tx.commit();
@@ -85,8 +88,7 @@ public class EntityCreator {
         Timestamp[] timestamps = new Timestamp[]{Timestamp.valueOf("2018-04-19 13:00:00"),Timestamp.valueOf("2016-09-29 07:00:00"),Timestamp.valueOf("2018-03-29 08:00:00"),Timestamp.valueOf("2017-03-22 11:00:00"),Timestamp.valueOf("2017-04-11 01:15:00"),Timestamp.valueOf("2017-07-08 15:00:00"),Timestamp.valueOf("2016-07-16 17:00:00"),Timestamp.valueOf("2017-02-14 10:00:00"),Timestamp.valueOf("2016-02-28 21:00:00"),Timestamp.valueOf("2017-10-25 15:00:00"),Timestamp.valueOf("2018-08-04 06:00:00"),Timestamp.valueOf("2018-06-06 14:30:00"),Timestamp.valueOf("2018-03-27 03:00:00"),Timestamp.valueOf("2018-03-25 12:00:00"),Timestamp.valueOf("2019-03-14 05:00:00"),Timestamp.valueOf("2017-06-16 20:00:00"),Timestamp.valueOf("2017-05-20 19:00:00"),Timestamp.valueOf("2016-04-05 13:00:00"),Timestamp.valueOf("2018-01-25 18:00:00"),Timestamp.valueOf("2016-12-28 20:00:00"),Timestamp.valueOf("2017-12-13 11:00:00"),Timestamp.valueOf("2016-11-14 07:00:00"),Timestamp.valueOf("2017-07-12 19:30:00"),Timestamp.valueOf("2016-02-09 07:00:00"),Timestamp.valueOf("2017-12-12 21:00:00"),Timestamp.valueOf("2016-12-23 19:00:00"),Timestamp.valueOf("2019-03-16 18:00:00"),Timestamp.valueOf("2019-01-01 06:00:00"),Timestamp.valueOf("2017-10-20 14:00:00"),Timestamp.valueOf("2017-05-06 09:00:00"),Timestamp.valueOf("2018-01-25 10:00:00"),Timestamp.valueOf("2016-09-11 10:45:00"),Timestamp.valueOf("2016-10-28 01:00:00"),Timestamp.valueOf("2016-07-13 09:00:00"),Timestamp.valueOf("2016-03-28 21:00:00"),Timestamp.valueOf("2018-04-07 11:00:00"),Timestamp.valueOf("2017-02-24 06:30:00"),Timestamp.valueOf("2017-05-09 09:00:00"),Timestamp.valueOf("2017-09-28 18:00:00"),Timestamp.valueOf("2017-05-01 09:00:00")};
         double[] fatPercentages = new double[]{24,18,15,22,21.1,20,19,19,25,15,15,19,17.3,5,11,15,20,9,9,14.5,5,22,15,15,18,25.1,13,18,6,6,24,8,19,15,9,13,14.2,25,14,5};
         double[] weights = new double[]{149,191,198,167,210,202,179,169,209,209,104,204,163,162,151,107,128,161,179,124,171,139,188,208,132,173,204,193,201,167,139,123,106,164,188,192,123,123,189,204};
-        //@TODO client IDs need to be user ids
-        //int[] clientsIds = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,12,17,4,19,18,4,8,12,14,10,17,4,20,17,10,18,11,13,4,13};
+        int[] clientsIds = new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,12,17,4,19,18,4,8,12,14,10,17,4,19,17,10,18,11,13,4,13};
 
         LOGGER.fine("Creating default check-ins");
         for(int i = 0; i < 40; i++){
@@ -98,6 +100,7 @@ public class EntityCreator {
             checkIn.setBodyFat(fatPercentages[i]);
             checkIn.setCheckInTimeStamp(timestamps[i]);
             checkIn.setWeight(weights[i]);
+            users[clientsIds[i]].addCheckIn(checkIn); //not sure if this works whatsoever can't possibly be right
 
             entityManager.persist(checkIn);
             tx.commit();

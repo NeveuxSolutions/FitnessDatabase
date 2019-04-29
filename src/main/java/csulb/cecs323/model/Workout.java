@@ -8,6 +8,8 @@ public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long workoutId;
     private Timestamp workoutStartTime;
+
+    @Column(nullable=false)
     private String workoutDescription;
 
     @Enumerated(EnumType.STRING)

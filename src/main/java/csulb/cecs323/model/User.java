@@ -1,22 +1,47 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //need to do enums, cks and fks + junction with programs
 @Entity
+//@TODO double check this is how ck's are done
+//@TODO can enum fks just be hardcoded?
+//@TODO after ck's + FKs are done recheck not null constraints
+@Table(
+        uniqueConstraints=
+        @UniqueConstraint(columnNames={"phone", "fName", "lName"})
+)
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //need to do the one to many?
     private int userId;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable=false)
     private Gender gender;
     private String phone;
+
+    @Column(nullable=false)
     private String fName;
+
+    @Column(nullable=false)
     private String lName;
+
+    @Column(nullable=false)
     private int age;
     private double height;
+
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
+    
+    @OneToMany(mappedBy="userId")
+    private java.util.List<CheckIn> checkIns = new ArrayList<>();
+
+    public void addCheckIn(CheckIn appointment){
+        checkIns.add(appointment);
+    }
 
     public int getUserId() {
         return userId;

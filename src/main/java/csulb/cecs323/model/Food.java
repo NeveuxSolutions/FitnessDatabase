@@ -6,9 +6,13 @@ import javax.persistence.*;
 public class Food {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long foodId;
+    @Column(nullable=false)
     private String name;
+    @Column(nullable=false)
     private double proteinGram;
+    @Column(nullable=false)
     private double carbGram;
+    @Column(nullable=false)
     private double fatGram;
 
     @Enumerated(EnumType.STRING)

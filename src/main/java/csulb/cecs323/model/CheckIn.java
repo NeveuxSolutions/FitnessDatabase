@@ -1,20 +1,16 @@
 package csulb.cecs323.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 public class CheckIn {
-    //@TODO is checkin timestamp type valid?
     @Id
     private Timestamp checkInTimeStamp;
     private double weight;
     private double bodyFat;
-    @ManyToOne (cascade=CascadeType.ALL) //not sure about cascade just put it in as a reminder
+    //@TODO review/insert cascades
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
     @JoinColumn(name="CLIENTID") //renames column in db
     private User userId;
 
