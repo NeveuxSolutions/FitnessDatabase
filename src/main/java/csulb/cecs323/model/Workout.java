@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long workoutId;
-    @Past
+
     private Timestamp workoutStartTime;
 
     @Column(nullable=false)

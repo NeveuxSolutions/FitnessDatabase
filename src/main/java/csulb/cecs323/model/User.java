@@ -1,6 +1,7 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class User {
     private String lName;
 
     @Column(nullable=false)
+    @Min(30) //@TODO does atMin only restrict insertions because initial "forced" insertions still insert if they are invalid according to min
     private int age;
     private double height;
 
@@ -39,9 +41,9 @@ public class User {
     @OneToMany(mappedBy="userId")
     private java.util.List<CheckIn> checkIns = new ArrayList<>();
 
-    //public void addCheckIn(CheckIn appointment){
-     //   checkIns.add(appointment);
-   // }
+    public void addCheckIn(CheckIn appointment){
+        checkIns.add(appointment);
+    }
 
     public int getUserId() {
         return userId;
