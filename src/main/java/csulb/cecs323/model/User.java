@@ -5,6 +5,7 @@ import javax.persistence.*;
 //need to do enums, cks and fks + junction with programs
 @Entity
 public class User {
+    //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //need to do the one to many?
     private int userId;
     @Enumerated(EnumType.STRING)

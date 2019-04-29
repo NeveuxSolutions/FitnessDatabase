@@ -14,7 +14,7 @@ public class CaloricTotal {
     public int getQuantity() {
         return quantity;
     }
-//@TODO  is quantity in the right place
+//@TODO  is quantity in the right place?
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
