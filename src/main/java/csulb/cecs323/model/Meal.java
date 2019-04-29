@@ -16,7 +16,8 @@ public class Meal {
     private double totalProtein;
     private double totalCarbs;
     private double totalFat;
-    private double totalCalories;
+    //@TODO should meal calories be derived in uml
+    private double mealCalories;
 
     //@TODO should caloric totals have getters and setters as they are derived?
     public long getMealId() {
@@ -67,11 +68,11 @@ public class Meal {
         this.totalFat = totalFat;
     }
 
-    public double getTotalCalories() {
-        return totalCalories;
+    public double getMealCalories() {
+        return mealCalories;
     }
 
-    public void setTotalCalories(double totalCalories) {
-        this.totalCalories = totalCalories;
+    public void setMealCalories(double totalCalories) {
+        this.mealCalories = totalCalories;
     }
 }
