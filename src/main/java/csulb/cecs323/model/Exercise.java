@@ -2,7 +2,6 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 
-//@TODO rename exercise to weightlifting exercise or something as it clashes with the cardio exercise?
 @Entity
 public class Exercise {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,15 +7,15 @@ import javax.validation.constraints.*;
 @Entity
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long workoutId;
+    private int workoutId;
 
     private Timestamp workoutStartTime;
 
     @Column(nullable=false)
     private String workoutDescription;
 
-    @Enumerated(EnumType.STRING)
-    private WorkoutDay day;
+    @Min(1) @Max(7)
+    private int day;
 
     public Timestamp getWorkoutStartTime() {
         return workoutStartTime;
@@ -33,11 +33,11 @@ public class Workout {
         this.workoutDescription = workoutDescription;
     }
 
-    public WorkoutDay getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(WorkoutDay day) {
+    public void setDay(int day) {
         this.day = day;
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 )
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
-    @PrimaryKeyJoinColumn @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //need to do the one to many?
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     @Enumerated(EnumType.STRING)

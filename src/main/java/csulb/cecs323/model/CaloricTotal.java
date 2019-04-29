@@ -7,8 +7,10 @@ import javax.persistence.Id;
 public class CaloricTotal {
     @Id
     private int foodId;
+    /*
+    private Food foodId;
     @Id
-    private int mealId;
+    private int mealId;*/
     private int quantity;
 
     public int getQuantity() {

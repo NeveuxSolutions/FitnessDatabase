@@ -32,9 +32,9 @@ public class EntityCreator {
         //General food object
         Food food = new Food();
         food.setName(name);
-        food.setProteinGram(protein);
-        food.setCarbGram(carb);
-        food.setFatGram(fat);
+        food.setGramsProtein(protein);
+        food.setGramsCarb(carb);
+        food.setGramsFat(fat);
         switch(type) {
             case PROTEIN: food.setFoodType(FoodType.PROTEIN); break;
             case CARBOHYDRATE: food.setFoodType(FoodType.CARBOHYDRATE); break;
@@ -71,7 +71,6 @@ public class EntityCreator {
             user.setAge(ages[i]);
             user.setHeight(heights[i]);
             user.setUserExperienceLevel(experience[i]);
-            //@TODO find the proper way to link users and checkins
             users[i] = user; //janky workaround for now
 
             entityManager.persist(user);

@@ -6,7 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class ExerciseAssignment {
     @Id
-    private int workoutId;
+    private int workoutId;/*
+    private Workout workoutId;
     @Id
-    private int exerciseId;
+    private Exercise exerciseId;*/
 }

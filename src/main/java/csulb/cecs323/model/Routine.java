@@ -4,20 +4,21 @@ import javax.persistence.*;
 
 @Entity
 public class Routine {
+    //@TODO rdb diagram looks wrong
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long routineId;
+    private int routineId;
     private String routineName;
     private String routineDescription;
-    //@TODO Dropped routineType? seems too close to training style and may be a repeated attribute from other enums
     @Enumerated(EnumType.STRING)
     private TrainingStyle trainingStyle;
+    //private Program programId;
 
-    public long getRoutineId() {
+    public int getRoutineId() {
         return routineId;
     }
 
-    public void setRoutineId(long routineId) {
+    public void setRoutineId(int routineId) {
         this.routineId = routineId;
     }
 
@@ -44,4 +45,12 @@ public class Routine {
     public void setTrainingStyle(TrainingStyle trainingStyle) {
         this.trainingStyle = trainingStyle;
     }
+
+   /* public Program getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(Program programId) {
+        this.programId = programId;
+    }*/
 }

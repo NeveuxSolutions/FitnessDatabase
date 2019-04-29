@@ -6,7 +6,9 @@ import javax.persistence.Id;
 @Entity
 public class MealAssignments {
     @Id
-    private int mealId;
+    private int mealId;/*
+    //@TODO change int to mealId
+    private Meal mealId;
     @Id
-    private int mealPlanId;
+    private MealPlan mealPlanId;*/
 }

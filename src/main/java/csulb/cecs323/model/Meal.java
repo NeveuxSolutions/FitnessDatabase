@@ -10,8 +10,9 @@ import java.sql.Timestamp;
 public class Meal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealId;
+    //@TODO mealname is a ck
     private String mealName;
-    private Timestamp timeEat;
+    private Timestamp timeEaten;
     private double totalProtein;
     private double totalCarbs;
     private double totalFat;
@@ -34,12 +35,12 @@ public class Meal {
         this.mealName = mealName;
     }
 
-    public Timestamp getTimeEat() {
-        return timeEat;
+    public Timestamp getTimeEaten() {
+        return timeEaten;
     }
 
-    public void setTimeEat(Timestamp timeEat) {
-        this.timeEat = timeEat;
+    public void setTimeEaten(Timestamp timeEat) {
+        this.timeEaten = timeEat;
     }
 
     public double getTotalProtein() {

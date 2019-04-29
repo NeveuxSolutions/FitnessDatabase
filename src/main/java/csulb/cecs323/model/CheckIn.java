@@ -11,7 +11,7 @@ public class CheckIn {
     private Timestamp checkInTimeStamp;
     private double weight;
     private double bodyFat;
-    //@TODO review/insert cascades
+    //@TODO review/insert cascades + make checkin timestamp a unique ck
     @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
     @JoinColumn(foreignKey = @ForeignKey(name="CLIENTID")) //renames column in db
     private User userId;

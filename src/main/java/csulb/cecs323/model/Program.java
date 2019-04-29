@@ -16,6 +16,7 @@ public class Program {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+    //private MealPlan mealPlan;
 
     public Date getStartDate() {
         return startDate;
@@ -56,4 +57,12 @@ public class Program {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+   /* public MealPlan getMealPlan() {
+        return mealPlan;
+    }
+
+    public void setMealPlan(MealPlan mealPlan) {
+        this.mealPlan = mealPlan;
+    }*/
 }

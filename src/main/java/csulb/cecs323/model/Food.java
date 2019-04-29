@@ -9,11 +9,11 @@ public class Food {
     @Column(nullable=false)
     private String name;
     @Column(nullable=false)
-    private double proteinGram;
+    private double gramsProtein;
     @Column(nullable=false)
-    private double carbGram;
+    private double gramsCarb;
     @Column(nullable=false)
-    private double fatGram;
+    private double gramsFat;
 
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
@@ -26,28 +26,28 @@ public class Food {
         this.name = name;
     }
 
-    public double getProteinGram() {
-        return proteinGram;
+    public double getGramsProtein() {
+        return gramsProtein;
     }
 
-    public void setProteinGram(double proteinGram) {
-        this.proteinGram = proteinGram;
+    public void setGramsProtein(double proteinGram) {
+        this.gramsProtein = proteinGram;
     }
 
-    public double getCarbGram() {
-        return carbGram;
+    public double getGramsCarb() {
+        return gramsCarb;
     }
 
-    public void setCarbGram(double carbGram) {
-        this.carbGram = carbGram;
+    public void setGramsCarb(double carbGram) {
+        this.gramsCarb = carbGram;
     }
 
-    public double getFatGram() {
-        return fatGram;
+    public double getGramsFat() {
+        return gramsFat;
     }
 
-    public void setFatGram(double fatGram) {
-        this.fatGram = fatGram;
+    public void setGramsFat(double fatGram) {
+        this.gramsFat = fatGram;
     }
 
     public FoodType getFoodType() {

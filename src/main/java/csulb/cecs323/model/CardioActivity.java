@@ -1,6 +1,6 @@
 package csulb.cecs323.model;
 
-public enum CardioExercise {
+public enum CardioActivity {
     STAIRMASTER,
     BIKE,
     RUN,

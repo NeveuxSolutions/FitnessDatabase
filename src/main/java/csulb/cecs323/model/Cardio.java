@@ -9,7 +9,7 @@ public class Cardio {
     private int cardioId;
     private Time duration;
     @Enumerated(EnumType.STRING)
-    private CardioExercise exercise;
+    private CardioActivity exercise;
 
     public int getCardioId() {
         return cardioId;
@@ -27,11 +27,11 @@ public class Cardio {
         this.duration = duration;
     }
 
-    public CardioExercise getExercise() {
+    public CardioActivity getExercise() {
         return exercise;
     }
 
-    public void setExercise(CardioExercise exercise) {
+    public void setExercise(CardioActivity exercise) {
         this.exercise = exercise;
     }
 }
