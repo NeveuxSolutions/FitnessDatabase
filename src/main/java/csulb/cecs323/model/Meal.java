@@ -1,9 +1,6 @@
 package csulb.cecs323.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,6 +15,11 @@ public class Meal {
     private double totalFat;
     //@TODO should meal calories be derived in uml
     private double mealCalories;
+
+
+    //Relations
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MealPlan mealPlan;
 
     //@TODO should caloric totals have getters and setters as they are derived?
     public long getMealId() {
@@ -74,5 +76,9 @@ public class Meal {
 
     public void setMealCalories(double totalCalories) {
         this.mealCalories = totalCalories;
+    }
+
+    public void setMealPlan(MealPlan mealPlan) {
+        this.mealPlan = mealPlan;
     }
 }
