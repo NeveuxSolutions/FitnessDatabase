@@ -1,7 +1,7 @@
 package csulb.cecs323.model;
 
 public enum DietGoal {
-    FATLOSS,
+    FAT_LOSS,
     BULKING,
     MAINTENANCE
 }

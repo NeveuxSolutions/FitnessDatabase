@@ -3,7 +3,12 @@ package csulb.cecs323.app;
 import csulb.cecs323.model.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -71,11 +76,12 @@ public class EntityCreator {
             user.setAge(ages[i]);
             user.setHeight(heights[i]);
             user.setUserExperienceLevel(experience[i]);
-            users[i] = user; //janky workaround for now
+            users[i] = user;
 
             entityManager.persist(user);
             tx.commit();
             LOGGER.fine("Done creating user: " + firstNames[i] + " " + lastNames[i]);
+
         }
         LOGGER.fine("Done creating default users");
     }

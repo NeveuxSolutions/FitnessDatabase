@@ -5,8 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Routine {
     //@TODO rdb diagram looks wrong
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routineId;
     private String routineName;
     private String routineDescription;

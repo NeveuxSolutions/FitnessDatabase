@@ -5,5 +5,5 @@ public enum TrainingStyle {
     STRENGTH,
     POWERLIFTING,
     ENDURANCE,
-    SPORTSPECIFIC
+    SPORT_SPECIFIC
 }

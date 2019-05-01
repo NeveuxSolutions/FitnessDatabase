@@ -1,15 +1,12 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
-import java.util.List;
 
 //need to do enums, cks and fks + junction with programs
 @Entity
-//@TODO double check this is how ck's are done
-//@TODO can enum fks just be hardcoded?
-//@TODO after ck's + FKs are done recheck not null constraints
 @Table(
         uniqueConstraints=
         @UniqueConstraint(columnNames={"phone", "fName", "lName"})
@@ -19,8 +16,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable=false)
+    @Enumerated(EnumType.STRING) @Column(nullable=false)
     private Gender gender;
     private String phone;
 
@@ -30,8 +26,8 @@ public class User {
     @Column(nullable=false)
     private String lName;
 
-    @Column(nullable=false)
-    @Min(30) //@TODO does atMin only restrict insertions because initial "forced" insertions still insert if they are invalid according to min
+
+    @Min(value = 5, message = "user can't be younger than 5") @Column(nullable=false)
     private int age;
     private double height;
 
