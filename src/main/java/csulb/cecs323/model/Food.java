@@ -18,6 +18,7 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
+    //Getters and Setters
     public String getName() {
         return name;
     }

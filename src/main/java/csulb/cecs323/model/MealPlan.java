@@ -1,14 +1,13 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 @Entity
 public class MealPlan {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanId;
     private String mealPlanName;
-    @Min(1) //@TODO decide on minimum number of meals in a mealplan
+    //@TODO sort out meal quantities int enum ??? change to @ElementCollection...Collection<Integer>
     private int numberOfMeals;
     private String dietDescription;
 
