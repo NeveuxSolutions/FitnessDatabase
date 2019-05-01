@@ -1,7 +1,6 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
 
@@ -16,30 +15,27 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
-    @Enumerated(EnumType.STRING) @Column(nullable=false)
-    private Gender gender;
-    private String phone;
-
     @Column(nullable=false)
     private String fName;
 
     @Column(nullable=false)
     private String lName;
 
-
     @Min(value = 5, message = "user can't be younger than 5") @Column(nullable=false)
     private int age;
     private double height;
 
+    @Enumerated(EnumType.STRING) @Column(nullable=false)
+    private Gender gender;
+    private String phone;
+
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
-    
-    @OneToMany(mappedBy="userId")
-    private java.util.List<CheckIn> checkIns = new ArrayList<>();
 
-    public void addCheckIn(CheckIn appointment){
-        checkIns.add(appointment);
-    }
+
+
+
+
 
     public int getUserId() {
         return userId;

@@ -26,14 +26,16 @@ import java.util.logging.Logger;
 public class Homework4Application {
    private EntityManager entityManager;
    private EntityCreator creator;
+   private EntityInitializer initializer;
 
    private static final Logger LOGGER = Logger.getLogger(Homework4Application.class.getName());
 
    public Homework4Application(EntityManager manager) {
       this.entityManager = manager;
       creator = new EntityCreator(manager);
-      creator.initializeUsers();
-      creator.initializeCheckins();
+      initializer = new EntityInitializer(manager);
+      initializer.initializeUsers();
+      initializer.initializeCheckins();
    }
 
    public static void main(String[] args) {
