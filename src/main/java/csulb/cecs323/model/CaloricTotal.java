@@ -16,14 +16,12 @@ public class CaloricTotal {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "foodId", referencedColumnName = "foodId")
     private Food food;
-
 
     public int getQuantity() {
         return quantity;
     }
-//@TODO  is quantity in the right place?
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

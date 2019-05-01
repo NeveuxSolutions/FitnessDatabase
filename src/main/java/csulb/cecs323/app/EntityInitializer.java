@@ -11,6 +11,7 @@ public class EntityInitializer {
     private static final Logger LOGGER =  Logger.getLogger(Homework4Application.class.getName());
     private EntityManager entityManager;
     private User[] users = new User[20];
+    private Food[] foods = new Food[20];
 
     public EntityInitializer(EntityManager entityManager){
         this.entityManager = entityManager;
@@ -102,9 +103,26 @@ public class EntityInitializer {
         food.setGramsCarb(.23);
         food.setGramsFat(.003);
         food.setGramsProtein(1.1);
+        foods[0] = food;
 
 
         entityManager.persist(food);
+        tx.commit();
+        LOGGER.fine("Done creating default food");
+    }
+
+    public void initializeCaloricTotals(){
+        LOGGER.fine("Creating default food");
+
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+
+        CaloricTotal caloricTotal = new CaloricTotal();
+        caloricTotal.setFood(foods[0]);
+        caloricTotal.setQuantity(2);
+
+
+        entityManager.persist(caloricTotal);
         tx.commit();
         LOGGER.fine("Done creating default food");
     }

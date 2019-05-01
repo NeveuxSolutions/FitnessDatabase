@@ -21,6 +21,8 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
+  //  @OneToMany(mappedBy = "foodId")
+//    private java.util.List<CaloricTotal> caloricTotals = new ArrayList<>();
     //Getters and Setters
 
     public String getName() {

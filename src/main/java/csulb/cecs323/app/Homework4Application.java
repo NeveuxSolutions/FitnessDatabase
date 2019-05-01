@@ -37,6 +37,7 @@ public class Homework4Application {
       initializer.initializeUsers();
       initializer.initializeCheckins();
       initializer.initializeFood();
+      initializer.initializeCaloricTotals();
    }
 
    public static void main(String[] args) {
