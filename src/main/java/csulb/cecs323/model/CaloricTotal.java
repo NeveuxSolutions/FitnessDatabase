@@ -14,6 +14,9 @@ public class CaloricTotal {
     @ManyToOne(fetch = FetchType.LAZY)
     private Food food;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Meal meal;
+
     public int getQuantity() {
         return quantity;
     }
@@ -24,5 +27,9 @@ public class CaloricTotal {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
     }
 }
