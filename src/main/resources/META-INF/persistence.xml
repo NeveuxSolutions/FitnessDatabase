@@ -18,9 +18,9 @@
 
 			<!-- TODO: fill in below the appropriate database, username and password -->
 
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://cecs-db01.coe.csulb.edu:3306/DATABASE?serverTimezone=UTC" />
-			<property name="javax.persistence.jdbc.user" value="USERNAME" />
-			<property name="javax.persistence.jdbc.password" value="PASSWORD" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://cecs-db01.coe.csulb.edu:3306/cecs323sec1g1?serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="cecs323sec1s23" />
+			<property name="javax.persistence.jdbc.password" value="Badohc" />
 
 			<!-- EclipseLink should create the database schema automatically -->
 			     <!-- to drop the tables and create them:  drop-and-create-tables -->

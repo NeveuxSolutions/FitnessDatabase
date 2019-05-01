@@ -1,17 +1,18 @@
 package csulb.cecs323.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class CaloricTotal {
-    @Id
-    private int foodId;
-    /*
-    private Food foodId;
-    @Id
-    private int mealId;*/
+    @Id private int foodId;
+    @Id private int mealId;
     private int quantity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Food food;
 
     public int getQuantity() {
         return quantity;
@@ -19,5 +20,9 @@ public class CaloricTotal {
 //@TODO  is quantity in the right place?
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
     }
 }
