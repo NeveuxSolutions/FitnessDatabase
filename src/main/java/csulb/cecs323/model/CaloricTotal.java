@@ -5,6 +5,7 @@ import javax.persistence.Id;
 
 @Entity
 public class CaloricTotal {
+    //test
     @Id
     private int foodId;
     /*
