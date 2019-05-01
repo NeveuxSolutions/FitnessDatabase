@@ -32,13 +32,21 @@ public class Homework4Application {
 
    public Homework4Application(EntityManager manager) {
       this.entityManager = manager;
-      creator = new EntityCreator(manager);
-      initializer = new EntityInitializer(manager);
-      initializer.initializeUsers();
-      initializer.initializeCheckins();
-      initializer.initializeFood();
-      initializer.initializeCaloricTotals();
    }
+
+   public void startApplication(){
+       creator = new EntityCreator(entityManager);
+       initializer = new EntityInitializer(entityManager);
+
+       initializeDatabase();
+   }
+
+   private void initializeDatabase(){
+        initializer.initializeUsers();
+        initializer.initializeCheckins();
+        initializer.initializeFood();
+        initializer.initializeCaloricTotals();
+    }
 
    public static void main(String[] args) {
        System.out.println(System.getProperty("java.class.path"));
@@ -46,6 +54,7 @@ public class Homework4Application {
        EntityManagerFactory factory = Persistence.createEntityManagerFactory("homework4_PU");
        EntityManager manager = factory.createEntityManager();
        Homework4Application hw4application = new Homework4Application(manager);
+       hw4application.startApplication();
     }
     private void initializeDB(){
 
