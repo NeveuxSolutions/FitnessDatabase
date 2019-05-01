@@ -1,11 +1,14 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Food {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int foodId;
+
     @Column(nullable=false)
     private String name;
     @Column(nullable=false)
@@ -19,6 +22,7 @@ public class Food {
     private FoodType foodType;
 
     //Getters and Setters
+
     public String getName() {
         return name;
     }

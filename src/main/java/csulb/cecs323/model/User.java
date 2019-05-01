@@ -32,10 +32,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
 
+    @OneToMany(mappedBy="userId")
+    private java.util.List<CheckIn> checkIns = new ArrayList<>();
 
 
-
-
+    public void addCheckIn(CheckIn appointment){
+        checkIns.add(appointment);
+    }
 
     public int getUserId() {
         return userId;

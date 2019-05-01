@@ -1,9 +1,6 @@
 package csulb.cecs323.app;
 
-import csulb.cecs323.model.CheckIn;
-import csulb.cecs323.model.ExperienceLevel;
-import csulb.cecs323.model.Gender;
-import csulb.cecs323.model.User;
+import csulb.cecs323.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -74,7 +71,7 @@ public class EntityInitializer {
             checkIn.setBodyFat(fatPercentages[i]);
             checkIn.setCheckInTimeStamp(timestamps[i]);
             checkIn.setWeight(weights[i]);
-           // users[clientsIds[i]].addCheckIn(checkIn);
+            users[clientsIds[i]].addCheckIn(checkIn);
             checkIn.setUserId(users[clientsIds[i]]);
 
             entityManager.persist(checkIn);
@@ -91,5 +88,24 @@ public class EntityInitializer {
         LOGGER.fine("Creating default workouts");
 
         LOGGER.fine("Done creating default workouts");
+    }
+
+    public void initializeFood(){
+        LOGGER.fine("Creating default food");
+
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+
+        Food food = new Food();
+        food.setName("banana");
+        food.setFoodType(FoodType.CARBOHYDRATE);
+        food.setGramsCarb(.23);
+        food.setGramsFat(.003);
+        food.setGramsProtein(1.1);
+
+
+        entityManager.persist(food);
+        tx.commit();
+        LOGGER.fine("Done creating default food");
     }
 }

@@ -1,9 +1,6 @@
 package csulb.cecs323.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class CaloricTotal {
@@ -12,6 +9,7 @@ public class CaloricTotal {
     private int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "foodId", referencedColumnName = "foodId")
     private Food food;
 
     @ManyToOne(fetch = FetchType.LAZY)

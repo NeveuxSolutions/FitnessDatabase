@@ -36,6 +36,7 @@ public class Homework4Application {
       initializer = new EntityInitializer(manager);
       initializer.initializeUsers();
       initializer.initializeCheckins();
+      initializer.initializeFood();
    }
 
    public static void main(String[] args) {
