@@ -6,14 +6,19 @@ import javax.persistence.*;
 public class CaloricTotal {
     @Id private int foodId;
     @Id private int mealId;
+    private final int CALORIE_PROTEIN_CARB = 4;
+    private final int CALORIE_FAT = 9;
     private int quantity;
+    private double totalCalories;
+    private double totalProtein;
+    private double totalCarbs;
+    private double totalFat;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "foodId", referencedColumnName = "foodId")
     private Food food;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Meal meal;
 
     public int getQuantity() {
         return quantity;
@@ -27,7 +32,20 @@ public class CaloricTotal {
         this.food = food;
     }
 
-    public void setMeal(Meal meal) {
-        this.meal = meal;
+    public void setTotalProtein() {
+        this.totalProtein = this.quantity * this.food.getGramsProtein();
     }
+
+    public void setTotalCarbs() {
+        this.totalCarbs = this.quantity * this.food.getGramsCarb();
+    }
+
+    public void setTotalFat() {
+        this.totalFat = this.quantity * this.food.getGramsFat();
+    }
+
+    public void setTotalCalories() {
+        this.totalCalories = ((this.totalProtein + this.totalCarbs) * CALORIE_PROTEIN_CARB) + (this.totalFat * CALORIE_FAT);
+    }
+
 }
