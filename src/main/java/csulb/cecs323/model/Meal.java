@@ -10,12 +10,6 @@ public class Meal {
     //@TODO mealname is a ck
     private String mealName;
     private Timestamp timeEaten;
-    private double totalProtein;
-    private double totalCarbs;
-    private double totalFat;
-    //@TODO should meal calories be derived in uml
-    private double mealCalories;
-
 
     //Relations
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,39 +40,5 @@ public class Meal {
         this.timeEaten = timeEat;
     }
 
-    public double getTotalProtein() {
-        return totalProtein;
-    }
 
-    public void setTotalProtein(double totalProtein) {
-        this.totalProtein = totalProtein;
-    }
-
-    public double getTotalCarbs() {
-        return totalCarbs;
-    }
-
-    public void setTotalCarbs(double totalCarbs) {
-        this.totalCarbs = totalCarbs;
-    }
-
-    public double getTotalFat() {
-        return totalFat;
-    }
-
-    public void setTotalFat(double totalFat) {
-        this.totalFat = totalFat;
-    }
-
-    public double getMealCalories() {
-        return mealCalories;
-    }
-
-    public void setMealCalories(double totalCalories) {
-        this.mealCalories = totalCalories;
-    }
-
-    public void setMealPlan(MealPlan mealPlan) {
-        this.mealPlan = mealPlan;
-    }
 }
