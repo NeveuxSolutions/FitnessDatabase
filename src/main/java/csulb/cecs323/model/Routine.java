@@ -9,6 +9,7 @@ public class Routine {
     private int routineId;
     private String routineName;
     private String routineDescription;
+
     @Enumerated(EnumType.STRING)
     private TrainingStyle trainingStyle;
     //private Program programId;

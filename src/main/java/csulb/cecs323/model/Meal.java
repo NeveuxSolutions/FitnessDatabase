@@ -4,10 +4,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Table(
+    uniqueConstraints = @UniqueConstraint(columnNames={"mealName"})
+)
 public class Meal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealId;
-    //@TODO mealname is a ck
     private String mealName;
     private Timestamp timeEaten;
 
@@ -15,7 +17,6 @@ public class Meal {
     @ManyToOne(fetch = FetchType.LAZY)
     private MealPlan mealPlan;
 
-    //@TODO should caloric totals have getters and setters as they are derived?
     public long getMealId() {
         return mealId;
     }
@@ -39,6 +40,4 @@ public class Meal {
     public void setTimeEaten(Timestamp timeEat) {
         this.timeEaten = timeEat;
     }
-
-
 }

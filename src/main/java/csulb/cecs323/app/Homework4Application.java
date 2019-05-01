@@ -39,13 +39,18 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
 
        initializeDatabase();
+       displayUserInterface();
    }
 
-   private void initializeDatabase(){
+    private void initializeDatabase(){
         initializer.initializeUsers();
         initializer.initializeCheckins();
         initializer.initializeFood();
         initializer.initializeCaloricTotals();
+    }
+
+    private void displayUserInterface(){
+
     }
 
    public static void main(String[] args) {
@@ -53,10 +58,8 @@ public class Homework4Application {
        LOGGER.fine("Creating EntityManagerFactory and EntityManager");
        EntityManagerFactory factory = Persistence.createEntityManagerFactory("homework4_PU");
        EntityManager manager = factory.createEntityManager();
+
        Homework4Application hw4application = new Homework4Application(manager);
        hw4application.startApplication();
-    }
-    private void initializeDB(){
-
     }
 }

@@ -8,12 +8,10 @@ import javax.validation.constraints.*;
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int workoutId;
-
     private Timestamp workoutStartTime;
 
     @Column(nullable=false)
     private String workoutDescription;
-
     @Min(1) @Max(7)
     private int day;
 

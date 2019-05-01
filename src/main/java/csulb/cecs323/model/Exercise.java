@@ -12,10 +12,8 @@ public class Exercise {
 
     @Enumerated(EnumType.STRING)
     private BodyPart bodyPart;
-
     @Enumerated(EnumType.STRING)
     private ExerciseType exerciseType;
-
     @Enumerated(EnumType.STRING)
     private Tempo tempo;
 

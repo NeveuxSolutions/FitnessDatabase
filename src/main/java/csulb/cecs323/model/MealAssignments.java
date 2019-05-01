@@ -7,7 +7,6 @@ import javax.persistence.Id;
 public class MealAssignments {
     @Id
     private int mealId;/*
-    //@TODO change int to mealId
     private Meal mealId;
     @Id
     private MealPlan mealPlanId;*/

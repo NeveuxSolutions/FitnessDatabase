@@ -7,7 +7,8 @@ import java.sql.Time;
 public class Cardio {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cardioId;
-    private Time duration;
+    private Time duration
+            ;
     @Enumerated(EnumType.STRING)
     private CardioActivity exercise;
     @Enumerated(EnumType.STRING)

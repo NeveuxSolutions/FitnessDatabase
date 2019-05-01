@@ -7,8 +7,7 @@ import java.util.ArrayList;
 //need to do enums, cks and fks + junction with programs
 @Entity
 @Table(
-        uniqueConstraints=
-        @UniqueConstraint(columnNames={"phone", "fName", "lName"})
+    uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
 )
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
@@ -17,10 +16,8 @@ public class User {
 
     @Column(nullable=false)
     private String fName;
-
     @Column(nullable=false)
     private String lName;
-
     @Min(value = 5, message = "user can't be younger than 5") @Column(nullable=false)
     private int age;
     private double height;
@@ -28,7 +25,6 @@ public class User {
     @Enumerated(EnumType.STRING) @Column(nullable=false)
     private Gender gender;
     private String phone;
-
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
 

@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 public class CheckIn {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int checkInId;
-
     private Timestamp checkInTimeStamp;
     private double weight;
     private double bodyFat;
