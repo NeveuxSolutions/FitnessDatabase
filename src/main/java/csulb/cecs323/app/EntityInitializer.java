@@ -105,25 +105,57 @@ public class EntityInitializer {
         food.setGramsProtein(1.1);
         foods[0] = food;
 
-
         entityManager.persist(food);
         tx.commit();
         LOGGER.fine("Done creating default food");
     }
 
-    public void initializeCaloricTotals(){
-        LOGGER.fine("Creating default food");
+//    public void initializeCaloricTotals(){
+//        LOGGER.fine("Creating default Caloric Total");
+//
+//        EntityTransaction tx = entityManager.getTransaction();
+//        tx.begin();
+//
+//        CaloricTotal caloricTotal = new CaloricTotal();
+//        caloricTotal.setFood(foods[0]);
+//        caloricTotal.setQuantity(2);
+//
+//
+//        entityManager.persist(caloricTotal);
+//        tx.commit();
+//        LOGGER.fine("Done creating default Caloric Total");
+//    }
+
+    public void test() {
+        LOGGER.fine("Creating Test Caloric junction table");
 
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
-        CaloricTotal caloricTotal = new CaloricTotal();
-        caloricTotal.setFood(foods[0]);
-        caloricTotal.setQuantity(2);
+        Food food = new Food();
+        food.setName("Chicken");
+        food.setFoodType(FoodType.PROTEIN);
+        food.setGramsCarb(0.0);
+        food.setGramsFat(.003);
+        food.setGramsProtein(.20);
 
+        entityManager.persist(food);
+
+        Meal meal = new Meal();
+        meal.setMealName("Chicken");
+
+        entityManager.persist(meal);
+
+        CaloricTotal caloricTotal = new CaloricTotal(food, meal);
+        caloricTotal.setQuantity(100);
+        caloricTotal.setTotalProtein();
+        caloricTotal.setTotalCarbs();
+        caloricTotal.setTotalFat();
+        caloricTotal.setTotalCalories();
 
         entityManager.persist(caloricTotal);
         tx.commit();
-        LOGGER.fine("Done creating default food");
+        LOGGER.fine("Done creating test Caloric Total");
     }
+
 }

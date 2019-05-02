@@ -3,6 +3,7 @@ package csulb.cecs323.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Food {
@@ -21,10 +22,21 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
-  //  @OneToMany(mappedBy = "foodId")
-//    private java.util.List<CaloricTotal> caloricTotals = new ArrayList<>();
-    //Getters and Setters
 
+    @OneToMany(mappedBy = "food")
+    private Set<CaloricTotal> caloricTotals;
+
+
+    public void Food(){}
+    public void Food(String name, double protein, double carbs, double fat, FoodType type) {
+        setName(name);
+        setGramsProtein(protein);
+        setGramsCarb(carbs);
+        setGramsFat(fat);
+        setFoodType(type);
+    }
+
+    //Getters and Setters
     public String getName() {
         return name;
     }

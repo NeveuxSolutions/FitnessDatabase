@@ -2,6 +2,8 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(
@@ -14,8 +16,11 @@ public class Meal {
     private Timestamp timeEaten;
 
     //Relations
-    @ManyToOne(fetch = FetchType.LAZY)
-    private MealPlan mealPlan;
+    @OneToMany(mappedBy = "meal")
+    private Set<CaloricTotal> caloricTotals = new HashSet<>();
+
+
+    public void Meal() {}
 
     public long getMealId() {
         return mealId;
@@ -40,4 +45,12 @@ public class Meal {
     public void setTimeEaten(Timestamp timeEat) {
         this.timeEaten = timeEat;
     }
+
+//    public MealPlan getMealPlan() {
+//        return mealPlan;
+//    }
+//
+//    public void setMealPlan(MealPlan mealPlan) {
+//        this.mealPlan = mealPlan;
+//    }
 }

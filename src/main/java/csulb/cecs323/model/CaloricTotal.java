@@ -1,11 +1,21 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-public class CaloricTotal {
-    @Id private int foodId;
-    @Id private int mealId;
+public class CaloricTotal implements Serializable {
+    @Id
+    @ManyToOne
+    @JoinColumn
+    private Food food;
+
+    @Id
+    @ManyToOne
+    @JoinColumn
+    private Meal meal;
+
     private final int CALORIE_PROTEIN_CARB = 4;
     private final int CALORIE_FAT = 9;
     private int quantity;
@@ -14,9 +24,12 @@ public class CaloricTotal {
     private double totalCarbs;
     private double totalFat;
 
+    public CaloricTotal() {}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Food food;
+    public CaloricTotal(Food food, Meal meal) {
+        this.food = food;
+        this.meal = meal;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -46,4 +59,18 @@ public class CaloricTotal {
         this.totalCalories = ((this.totalProtein + this.totalCarbs) * CALORIE_PROTEIN_CARB) + (this.totalFat * CALORIE_FAT);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CaloricTotal)) return false;
+        CaloricTotal that = (CaloricTotal) o;
+        return Objects.equals(food.getName(), that.food.getName()) &&
+                Objects.equals(meal.getMealName(), that.meal.getMealName()) &&
+                Objects.equals(totalCalories, that.totalCalories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(food.getName(), meal.getMealName(), totalCalories);
+    }
 }
