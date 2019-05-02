@@ -6,6 +6,16 @@ import java.util.Objects;
 
 @Entity
 public class CaloricTotal implements Serializable {
+    @Transient
+    private final int CALORIE_PROTEIN_CARB = 4;
+    @Transient
+    private final int CALORIE_FAT = 9;
+    private int quantity;
+    private double totalCalories;
+    private double totalProtein;
+    private double totalCarbs;
+    private double totalFat;
+
     @Id
     @ManyToOne
     @JoinColumn
@@ -15,14 +25,6 @@ public class CaloricTotal implements Serializable {
     @ManyToOne
     @JoinColumn
     private Meal meal;
-
-    private final int CALORIE_PROTEIN_CARB = 4;
-    private final int CALORIE_FAT = 9;
-    private int quantity;
-    private double totalCalories;
-    private double totalProtein;
-    private double totalCarbs;
-    private double totalFat;
 
     public CaloricTotal() {}
 
