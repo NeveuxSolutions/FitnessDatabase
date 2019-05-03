@@ -16,7 +16,31 @@ public class Program {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    //private MealPlan mealPlan;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User client;
+
+    @OneToOne(mappedBy = "program")
+    private Routine routine;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mealPlanId", referencedColumnName = "mealPlanId")
+    private MealPlan mealPlan;
+
+
+    /**
+     * Null constructor
+     */
+    public Program() {}
+
+    /**
+     * Overloaded Constructor
+     * @param programDescription program description
+     */
+    public Program(String programDescription, User client) {
+        this.programDescription = programDescription;
+        this.client = client;
+    }
 
     public Date getStartDate() {
         return startDate;
@@ -58,11 +82,27 @@ public class Program {
         this.status = status;
     }
 
-   /* public MealPlan getMealPlan() {
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public Routine getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
+    }
+
+    public MealPlan getMealPlan() {
         return mealPlan;
     }
 
     public void setMealPlan(MealPlan mealPlan) {
         this.mealPlan = mealPlan;
-    }*/
+    }
 }

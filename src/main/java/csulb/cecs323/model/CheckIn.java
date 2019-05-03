@@ -15,6 +15,20 @@ public class CheckIn {
     @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
     private User userId;
 
+    /**
+     * Null Constructor
+     */
+    public CheckIn() {}
+
+    /**
+     * Overloaded Constructor
+     * @param user the user for this checkin
+     */
+    public CheckIn(User user) {
+        this.userId = user;
+    }
+
+    //GETTERS/SETTERS
     public Timestamp getCheckInTimeStamp() {
         return checkInTimeStamp;
     }

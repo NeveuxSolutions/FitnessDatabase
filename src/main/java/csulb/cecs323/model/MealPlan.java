@@ -18,6 +18,9 @@ public class MealPlan {
     @ManyToMany(mappedBy = "mealPlans")
     private Set<Meal> meals = new HashSet<>();
 
+    @OneToOne(mappedBy = "mealPlan")
+    private Program program;
+
     /**
      * Null Constructor
      */
@@ -70,5 +73,13 @@ public class MealPlan {
 
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
     }
 }

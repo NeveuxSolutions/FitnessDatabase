@@ -19,6 +19,11 @@ public class Routine {
     @ManyToMany(mappedBy = "routines")
     private Set<Workout> workouts = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "programId", referencedColumnName = "programId")
+    private Program program;
+
+
     /**
      * Null Constructor
      */
@@ -63,5 +68,13 @@ public class Routine {
 
     public void setWorkouts(Set<Workout> workouts) {
         this.workouts = workouts;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
     }
 }

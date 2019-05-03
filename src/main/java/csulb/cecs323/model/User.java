@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 //need to do enums, cks and fks + junction with programs
 @Entity
-@Table(
-    uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
-)
+//@Table(
+//    uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
+//)
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,30 @@ public class User {
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
 
+    // Relationships
     @OneToMany(mappedBy="userId")
     private java.util.List<CheckIn> checkIns = new ArrayList<>();
+
+    @OneToMany(mappedBy = "client")
+    private java.util.List<Program> programs = new ArrayList<>();
+
+    /**
+     * Null Constructor
+     */
+    public User() {}
+
+    /**
+     * Overloaded Constructor
+     * @param fname first name of user
+     * @param lname last name of user
+     */
+    public User(String fname, String lname) {
+        this.fName = fname;
+        this.lName = lname;
+        this.age = 10;
+        this.gender = Gender.FEMALE;
+        this.height = 10;
+    }
 
 
     public void addCheckIn(CheckIn appointment){
@@ -44,13 +66,13 @@ public class User {
         this.userId = userId;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
+//    public Gender getGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(Gender gender) {
+//        this.gender = gender;
+//    }
 
     public String getPhone() {
         return phone;
@@ -83,14 +105,14 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
+//
+//    public double getHeight() {
+//        return height;
+//    }
+//
+//    public void setHeight(double height) {
+//        this.height = height;
+//    }
 
     public ExperienceLevel getUserExperienceLevel() {
         return userExperienceLevel;
