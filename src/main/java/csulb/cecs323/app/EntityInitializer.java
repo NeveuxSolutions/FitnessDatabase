@@ -132,28 +132,68 @@ public class EntityInitializer {
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
-        Food food = new Food();
-        food.setName("Chicken");
-        food.setFoodType(FoodType.PROTEIN);
-        food.setGramsCarb(0.0);
-        food.setGramsFat(.003);
-        food.setGramsProtein(.20);
+        // Food - Chicken
+        Food chicken = new Food();
+        chicken.setName("Chicken");
+        chicken.setFoodType(FoodType.PROTEIN);
+        chicken.setGramsCarb(0.0);
+        chicken.setGramsFat(.003);
+        chicken.setGramsProtein(.20);
 
-        entityManager.persist(food);
+        // Food - Broccoli
+        Food broccoli = new Food();
+        broccoli.setName("Broccoli");
+        broccoli.setFoodType(FoodType.CARBOHYDRATE);
+        broccoli.setGramsCarb(0.07);
+        broccoli.setGramsFat(.003);
+        broccoli.setGramsProtein(.003);
 
-        Meal meal = new Meal();
-        meal.setMealName("Chicken");
+        entityManager.persist(chicken);
+        entityManager.persist(broccoli);
 
-        entityManager.persist(meal);
+        // Meal
+        Meal meal_1 = new Meal();
+        meal_1.setMealName("Chicken/BroccoliTest1");
 
-        CaloricTotal caloricTotal = new CaloricTotal(food, meal);
-        caloricTotal.setQuantity(100);
+        entityManager.persist(meal_1);
+
+        // Caloric Totals
+        CaloricTotal caloricTotal = new CaloricTotal(chicken, meal_1);
+        caloricTotal.setQuantity(200);
         caloricTotal.setTotalProtein();
         caloricTotal.setTotalCarbs();
         caloricTotal.setTotalFat();
         caloricTotal.setTotalCalories();
 
         entityManager.persist(caloricTotal);
+
+        // MealPlan
+        MealPlan mealPlan = new MealPlan("ChickenTestMealPlan");
+        Meal meal_2 = new Meal("ChickenTest", mealPlan);
+
+        entityManager.persist(meal_2);
+
+        //Routine
+        Routine routineTest = new Routine("TestRoutine");
+        entityManager.persist(routineTest);
+
+        //Workout
+        Workout workout = new Workout("Testing a workout", 1, routineTest);
+        entityManager.persist(workout);
+
+        //Cardio Exercise
+        Cardio run = new Cardio(CardioActivity.RUN, workout);
+        entityManager.persist(run);
+
+        //Weight Lifting Exercise
+        Exercise benchPress = new Exercise("Bench Press", workout);
+        entityManager.persist(benchPress);
+
+        //Weight Lifting Exercise 2
+        Exercise barbellRow = new Exercise("Barbell Row", workout);
+        entityManager.persist(barbellRow);
+
+
         tx.commit();
         LOGGER.fine("Done creating test Caloric Total");
     }

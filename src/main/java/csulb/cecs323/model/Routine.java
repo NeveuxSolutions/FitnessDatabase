@@ -1,6 +1,8 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Routine {
@@ -14,14 +16,23 @@ public class Routine {
     private TrainingStyle trainingStyle;
     //private Program programId;
 
-    public int getRoutineId() {
-        return routineId;
+    @ManyToMany(mappedBy = "routines")
+    private Set<Workout> workouts = new HashSet<>();
+
+    /**
+     * Null Constructor
+     */
+    public Routine() {}
+
+    /**
+     * Overloaded Constructor
+     * @param routineName the name of the routine
+     */
+    public Routine(String routineName) {
+        this.routineName = routineName;
     }
 
-    public void setRoutineId(int routineId) {
-        this.routineId = routineId;
-    }
-
+    //GETTERS/SETTERS
     public String getRoutineName() {
         return routineName;
     }
@@ -46,11 +57,11 @@ public class Routine {
         this.trainingStyle = trainingStyle;
     }
 
-   /* public Program getProgramId() {
-        return programId;
+    public Set<Workout> getWorkouts() {
+        return workouts;
     }
 
-    public void setProgramId(Program programId) {
-        this.programId = programId;
-    }*/
+    public void setWorkouts(Set<Workout> workouts) {
+        this.workouts = workouts;
+    }
 }

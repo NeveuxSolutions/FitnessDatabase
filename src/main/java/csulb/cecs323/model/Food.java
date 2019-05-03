@@ -26,17 +26,28 @@ public class Food {
     @OneToMany(mappedBy = "food")
     private Set<CaloricTotal> caloricTotals;
 
-
+    /**
+     * Null Constructor
+     */
     public void Food(){}
+
+    /**
+     * Overloaded Constructor
+     * @param name name of the food
+     * @param protein amount of protein / gram
+     * @param carbs amount of carbs / gram
+     * @param fat amount of fat / gram
+     * @param type Enum category of food (CARBOHYDRATE/PROTEIN/FAT)
+     */
     public void Food(String name, double protein, double carbs, double fat, FoodType type) {
-        setName(name);
-        setGramsProtein(protein);
-        setGramsCarb(carbs);
-        setGramsFat(fat);
-        setFoodType(type);
+        this.name = name;
+        this.gramsProtein = protein;
+        this.gramsCarb = carbs;
+        this.gramsFat = fat;
+        this.foodType = type;
     }
 
-    //Getters and Setters
+    // GETTERS/SETTERS
     public String getName() {
         return name;
     }
@@ -49,24 +60,24 @@ public class Food {
         return gramsProtein;
     }
 
-    public void setGramsProtein(double proteinGram) {
-        this.gramsProtein = proteinGram;
+    public void setGramsProtein(double gramsProtein) {
+        this.gramsProtein = gramsProtein;
     }
 
     public double getGramsCarb() {
         return gramsCarb;
     }
 
-    public void setGramsCarb(double carbGram) {
-        this.gramsCarb = carbGram;
+    public void setGramsCarb(double gramsCarb) {
+        this.gramsCarb = gramsCarb;
     }
 
     public double getGramsFat() {
         return gramsFat;
     }
 
-    public void setGramsFat(double fatGram) {
-        this.gramsFat = fatGram;
+    public void setGramsFat(double gramsFat) {
+        this.gramsFat = gramsFat;
     }
 
     public FoodType getFoodType() {

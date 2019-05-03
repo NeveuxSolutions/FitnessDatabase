@@ -1,6 +1,10 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class MealPlan {
@@ -13,14 +17,23 @@ public class MealPlan {
     @Enumerated(EnumType.STRING)
     private DietGoal dietGoal;
 
-    public long getMealPlanId() {
-        return mealPlanId;
+    @ManyToMany(mappedBy = "mealPlans")
+    private Set<Meal> meals = new HashSet<>();
+
+    /**
+     * Null Constructor
+     */
+    public MealPlan() {}
+
+    /**
+     * Overloaded constructor
+     * @param mealPlanName name of meal plan
+     */
+    public MealPlan(String mealPlanName) {
+        this.mealPlanName = mealPlanName;
     }
 
-    public void setMealPlanId(long mealPlanId) {
-        this.mealPlanId = mealPlanId;
-    }
-
+    // GETTERS/SETTERS
     public String getMealPlanName() {
         return mealPlanName;
     }
@@ -29,12 +42,12 @@ public class MealPlan {
         this.mealPlanName = mealPlanName;
     }
 
-    public int getNumberMeals() {
+    public int getNumberOfMeals() {
         return numberOfMeals;
     }
 
-    public void setNumberMeals(int numberMeals) {
-        this.numberOfMeals = numberMeals;
+    public void setNumberOfMeals(int numberOfMeals) {
+        this.numberOfMeals = numberOfMeals;
     }
 
     public String getDietDescription() {
@@ -51,5 +64,13 @@ public class MealPlan {
 
     public void setDietGoal(DietGoal dietGoal) {
         this.dietGoal = dietGoal;
+    }
+
+    public Set<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(Set<Meal> meals) {
+        this.meals = meals;
     }
 }
