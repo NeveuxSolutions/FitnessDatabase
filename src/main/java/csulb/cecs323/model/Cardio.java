@@ -1,7 +1,5 @@
 package csulb.cecs323.model;
 
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
-
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Set;
