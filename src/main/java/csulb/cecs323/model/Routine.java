@@ -6,7 +6,6 @@ import java.util.Set;
 
 @Entity
 public class Routine {
-    //@TODO rdb diagram looks wrong
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routineId;
     private String routineName;
@@ -14,7 +13,6 @@ public class Routine {
 
     @Enumerated(EnumType.STRING)
     private TrainingStyle trainingStyle;
-    //private Program programId;
 
     @ManyToMany(mappedBy = "routines")
     private Set<Workout> workouts = new HashSet<>();
@@ -76,5 +74,13 @@ public class Routine {
 
     public void setProgram(Program program) {
         this.program = program;
+    }
+
+    public int getRoutineId() {
+        return routineId;
+    }
+
+    public void addWorkout(Workout workout){
+        workouts.add(workout);
     }
 }

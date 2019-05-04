@@ -11,7 +11,7 @@ public class CheckIn {
     private double weight;
     private double bodyFat;
 
-    //@TODO review/insert cascades + make checkin timestamp a unique ck
+    //@TODO review/insert cascades + make checkin timestamp a unique ck change the userID db column name
     @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
     private User userId;
 

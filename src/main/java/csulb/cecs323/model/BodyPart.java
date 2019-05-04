@@ -10,5 +10,6 @@ public enum BodyPart {
     QUADS,
     HAMSTRINGS,
     CALVES,
-    FOREARMS
+    FOREARMS,
+    ABS
 }

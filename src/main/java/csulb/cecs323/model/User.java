@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 //need to do enums, cks and fks + junction with programs
 @Entity
-//@Table(
-//    uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
-//)
+@Table(
+    uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
+)
 public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

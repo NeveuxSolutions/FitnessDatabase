@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int workoutId;
-    private Timestamp workoutStartTime;
+    private int workoutStartTime;
 
     @Column(nullable=false)
     private String workoutDescription;
@@ -57,11 +57,11 @@ public class Workout {
         this.routines.forEach(x -> x.getWorkouts().add(this));
     }
 
-    public Timestamp getWorkoutStartTime() {
+    public int getWorkoutStartTime() {
         return workoutStartTime;
     }
 
-    public void setWorkoutStartTime(Timestamp workoutStartTime) {
+    public void setWorkoutStartTime(int workoutStartTime) {
         this.workoutStartTime = workoutStartTime;
     }
 
@@ -95,5 +95,13 @@ public class Workout {
 
     public void setExercises(Set<Exercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public int getWorkoutId() {
+        return workoutId;
+    }
+
+    public Set<Routine> getRoutines() {
+        return routines;
     }
 }

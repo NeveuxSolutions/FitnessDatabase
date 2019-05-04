@@ -1,7 +1,7 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Program {
