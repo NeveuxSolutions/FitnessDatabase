@@ -41,7 +41,7 @@ public class Homework4Application {
        queryGenerator = new QueryGenerator(entityManager);
 
        initializeDatabase();
-       //displayUserInterface();
+       displayUserInterface();
    }
 
     private void initializeDatabase(){
@@ -73,6 +73,7 @@ public class Homework4Application {
                case 1:
                         break;
                case 2:
+                        queryGenerator.getMealPlansWith6OrLessMeals();
                         break;
                case 3:
                         break;

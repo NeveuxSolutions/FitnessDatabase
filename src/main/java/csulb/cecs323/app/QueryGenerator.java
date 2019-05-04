@@ -1,6 +1,8 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.CheckIn;
+import csulb.cecs323.model.MealPlan;
+import csulb.cecs323.model.Program;
 import csulb.cecs323.model.User;
 
 import javax.persistence.EntityManager;
@@ -46,12 +48,13 @@ public class QueryGenerator {
     }
 
     public void getMealPlansWith6OrLessMeals(){
-        Query query = entityManager.createQuery("SELECT m FROM User u INNER JOIN u.programs p INNER JOIN  p.");
+        Query query = entityManager.createQuery("SELECT u,p,mp FROM User u INNER JOIN u.programs p INNER JOIN  p.mealPlan mp");
         List<Object[]> resultList = query.getResultList();
         for(Object[] o : resultList) {
             User u = (User) o[0];
-            CheckIn c = (CheckIn) o[1];
-            System.out.println(u.getfName() +" " + u.getlName() + " " + c.getCheckInTimeStamp() + " Bodyfat: " + c.getBodyFat());
+            Program p = (Program) o[1];
+            MealPlan mp = (MealPlan) o[2];
+            System.out.println(u.getfName() +" " + u.getlName() + " " + p.getProgramDescription() + " meal plan # meals: " + mp.getNumberOfMeals());
 
         }
 
