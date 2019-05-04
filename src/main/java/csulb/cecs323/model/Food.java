@@ -20,7 +20,6 @@ public class Food {
     @Enumerated(EnumType.STRING)
     private FoodType foodType;
 
-
     @OneToMany(mappedBy = "food")
     private Set<CaloricTotal> caloricTotals;
 

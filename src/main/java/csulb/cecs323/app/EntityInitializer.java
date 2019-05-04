@@ -157,7 +157,7 @@ public class EntityInitializer {
 
         entityManager.persist(meal_1);
 
-        // Caloric Totals
+        // Adding Chicken to meal
         CaloricTotal caloricTotal = new CaloricTotal(chicken, meal_1);
         caloricTotal.setQuantity(200);
         caloricTotal.setTotalProtein();
@@ -165,7 +165,16 @@ public class EntityInitializer {
         caloricTotal.setTotalFat();
         caloricTotal.setTotalCalories();
 
+        // Adding broccoli to meal
+        CaloricTotal caloricTotal12 = new CaloricTotal(broccoli, meal_1);
+        caloricTotal12.setQuantity(100);
+        caloricTotal12.setTotalProtein();
+        caloricTotal12.setTotalCarbs();
+        caloricTotal12.setTotalFat();
+        caloricTotal12.setTotalCalories();
+
         entityManager.persist(caloricTotal);
+        entityManager.persist(caloricTotal12);
 
         // MealPlan
         MealPlan mealPlan = new MealPlan("ChickenTestMealPlan");
