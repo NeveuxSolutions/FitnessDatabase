@@ -1,7 +1,9 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,7 +18,7 @@ public class MealPlan {
     private DietGoal dietGoal;
 
     @ManyToMany(mappedBy = "mealPlans")
-    private Set<Meal> meals = new HashSet<>();
+    private List<Meal> meals = new ArrayList<>();
 
     @OneToOne(mappedBy = "mealPlan")
     private Program program;
@@ -67,11 +69,14 @@ public class MealPlan {
         this.dietGoal = dietGoal;
     }
 
-    public Set<Meal> getMeals() {
+
+    public void setMeal(Meal meal) { this.meals.add(meal); }
+
+    public List<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(Set<Meal> meals) {
+    public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
 

@@ -47,9 +47,10 @@ public class Homework4Application {
     private void initializeDatabase(){
 //        initializer.test();
         initializer.initializeFood();
-        initializer.initializeUsers();
-        initializer.initializeCheckins();
+//        initializer.initializeUsers();
+//        initializer.initializeCheckins();
         initializer.initializeMeal();
+        initializer.initializeMealPlan();
 
     }
 

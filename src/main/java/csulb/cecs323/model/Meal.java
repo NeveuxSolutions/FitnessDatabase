@@ -3,6 +3,7 @@ package csulb.cecs323.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,7 +26,7 @@ public class Meal {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MEALASSIGNMENTS", joinColumns = @JoinColumn(name = "mealId", referencedColumnName = "mealId"),
     inverseJoinColumns = @JoinColumn(name = "mealPlanId", referencedColumnName = "mealPlanId"))
-    private Set<MealPlan> mealPlans;
+    private List<MealPlan> mealPlans;
 
     /**
      * Null Constructor
@@ -39,8 +40,7 @@ public class Meal {
      */
     public Meal(String mealName, MealPlan mealPlans) {
         this.mealName = mealName;
-        this.mealPlans = Stream.of(mealPlans).collect(Collectors.toSet());
-        this.mealPlans.forEach(x -> x.getMeals().add(this));
+
     }
 
     // GETTERS/SETTERS
@@ -69,12 +69,8 @@ public class Meal {
         this.caloricTotals = caloricTotals;
     }
 
-    public Set<MealPlan> getMealPlans() {
-        return mealPlans;
-    }
-
-    public void setMealPlans(Set<MealPlan> mealPlans) {
-        this.mealPlans = mealPlans;
+    public void assignToMealPlan(MealPlan mealPlans) {
+        this.mealPlans.add(mealPlans);
     }
 
     public double getMealCalories() {

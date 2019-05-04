@@ -1,6 +1,8 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
+import org.eclipse.persistence.annotations.TimeOfDay;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -180,8 +182,10 @@ public class EntityInitializer {
         // MealPlan
         MealPlan mealPlan = new MealPlan("ChickenTestMealPlan");
         Meal meal_2 = new Meal("ChickenTest", mealPlan);
-
         entityManager.persist(meal_2);
+
+        mealPlan.setMeal(meal_2);
+
 
         //Routine
         Routine routineTest = new Routine("TestRoutine");
@@ -223,6 +227,9 @@ public class EntityInitializer {
         LOGGER.fine("Done creating test Caloric Total");
     }
 
+    /**
+     * Method to add foods to the database
+     */
     public void initializeFood() {
         LOGGER.fine("Creating Food Table");
         EntityTransaction tx = entityManager.getTransaction();
@@ -256,8 +263,11 @@ public class EntityInitializer {
     }
 
 
+    /**
+     * Method to initialize meals to the database
+     */
     public void initializeMeal() {
-        LOGGER.fine("Creating Food Table");
+        LOGGER.fine("Creating Meal Table");
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
@@ -289,17 +299,62 @@ public class EntityInitializer {
         }
 
         tx.commit();
-        LOGGER.fine("Done Creating Food Table");
+        LOGGER.fine("Done Creating Meal Table");
     }
 
     /**
-     * Query to get a single food by given name
+     * Query to get a single food by given name.
      * @param name the name of the food to be retrieved
+     * @return the food found
      */
-    public Food getFood(String name) {
+    private Food getFood(String name) {
         Query query = entityManager.createQuery("SELECT f " + "FROM Food f " + "WHERE f.name LIKE :name");
-        Food food = (Food) query.setParameter("name", name).getSingleResult();
-        System.out.println(food.getName());
-        return food;
+        return (Food) query.setParameter("name", name).getSingleResult();
     }
+
+    /**
+     * Query to get a single meal
+     * @param meal the name of the meal
+     * @return the meal found
+     */
+    private Meal getMeal(String meal) {
+        Query query = entityManager.createQuery("SELECT m FROM Meal m WHERE m.mealName LIKE :meal");
+        return (Meal) query.setParameter("meal", meal).getSingleResult();
+    }
+
+    /**
+     * Query to get a user by specified name
+     * @param fName the first name of the user
+     * @param lName the last name of the user
+     * @return the retrieved user
+     */
+    private User getUser(String fName, String lName) {
+        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.fName LIKE :fName AND u.lName LIKE :lName");
+        return (User) query.setParameter("fName", fName).setParameter("lName", lName).getSingleResult();
+    }
+
+
+    public void initializeMealPlan() {
+        LOGGER.fine("Creating MealPlan Table");
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+
+        //@TODO This is trash. Just trying to test
+        int numberUsers = 20;
+        for (int i = 0; i < numberUsers; i++) {
+            //Create Meal Plan Object
+            MealPlan mealPlan = new MealPlan();
+
+            //Get a meal
+            Meal meal = getMeal("Chicken Breast/Broccoli/Almonds");
+            meal.assignToMealPlan(mealPlan);
+
+            //Assign the meal to the meal plan
+            entityManager.persist(mealPlan);
+        }
+
+        tx.commit();
+        LOGGER.fine("Done Creating MealPlan Table");
+    }
+
 }
