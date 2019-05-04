@@ -1,7 +1,6 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.sql.Timestamp;

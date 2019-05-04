@@ -14,8 +14,8 @@ package csulb.cecs323.app;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
@@ -27,6 +27,7 @@ public class Homework4Application {
    private EntityManager entityManager;
    private EntityCreator creator;
    private EntityInitializer initializer;
+   private QueryGenerator queryGenerator;
 
    private static final Logger LOGGER = Logger.getLogger(Homework4Application.class.getName());
 
@@ -37,17 +38,68 @@ public class Homework4Application {
    public void startApplication(){
        creator = new EntityCreator(entityManager);
        initializer = new EntityInitializer(entityManager);
+       queryGenerator = new QueryGenerator(entityManager);
 
        initializeDatabase();
-       displayUserInterface();
+       //displayUserInterface();
    }
 
     private void initializeDatabase(){
         initializer.test();
     }
 
+    //@TODO should be outside console? so we dont have all the db print statements breaking up the user interface or should we just delete them all?
+    //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
     private void displayUserInterface(){
+       Scanner in = new Scanner(System.in);
+       int userInput = -1;
+        System.out.println("Welcome to our fitness application!");
 
+
+        while (true) {
+           System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
+           System.out.println("1. was one erased or did we just start at two in the google doc?");
+           System.out.println("2. List all user meal plans with less than 6 meals.");
+           System.out.println("3. Retrieve all exercises that are not assigned to a workout.");
+           System.out.println("4. Retrieve a count of how many users are not currently on a program.");
+           System.out.println("5. Count the number of workouts for a user.");
+           System.out.println("6. Retrieve strongest users.");
+           System.out.println("7. Retrieve meal plans by calorie count.");
+           System.out.println("8. Retrieve average weight loss for a user.");
+           System.out.println("9: Exit Program");
+           userInput = Integer.parseInt(in.next());
+
+           switch (userInput){
+               case 1:
+                        break;
+               case 2:
+                        break;
+               case 3:
+                        break;
+               case 4:
+                        break;
+               case 5:
+                        System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
+                        Scanner scanner5 = new Scanner(System.in);
+
+                        break;
+               case 6:
+                        System.out.println("\nPlease enter the exercise name"); //want to just provide a numbered list of exercises?
+                        Scanner scanner6 = new Scanner(System.in);
+                        break;
+               case 7:
+                        System.out.println("\nPlease enter desired number of average calories"); //want to just provide a numbered list of calorie totals
+                        Scanner scanner7 = new Scanner(System.in);
+                        break;
+               case 8:
+                        System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
+                        Scanner scanner8 = new Scanner(System.in);
+                        queryGenerator.trialJoins();
+                        break;
+               case 9:  System.exit(0);
+                        break;
+           }
+       }
     }
 
    public static void main(String[] args) {
