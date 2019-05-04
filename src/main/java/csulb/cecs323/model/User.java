@@ -13,6 +13,8 @@ public class User {
     //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    private double height;
+    private String phone;
 
     @Column(nullable=false)
     private String fName;
@@ -20,19 +22,17 @@ public class User {
     private String lName;
     @Min(value = 5, message = "user can't be younger than 5") @Column(nullable=false)
     private int age;
-    private double height;
+
 
     @Enumerated(EnumType.STRING) @Column(nullable=false)
     private Gender gender;
-    private String phone;
     @Enumerated(EnumType.STRING)
     private ExperienceLevel userExperienceLevel;
 
     // Relationships
     @OneToMany(mappedBy="userId")
     private java.util.List<CheckIn> checkIns = new ArrayList<>();
-
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy="client") //client is the name of the fk attribute
     private java.util.List<Program> programs = new ArrayList<>();
 
     /**
@@ -57,6 +57,11 @@ public class User {
     public void addCheckIn(CheckIn appointment){
         checkIns.add(appointment);
     }
+
+    public void addProgram(Program program){
+        programs.add(program);
+    }
+
 
     public int getUserId() {
         return userId;
@@ -121,5 +126,6 @@ public class User {
     public void setUserExperienceLevel(ExperienceLevel userExperienceLevel) {
         this.userExperienceLevel = userExperienceLevel;
     }
+
 }
 
