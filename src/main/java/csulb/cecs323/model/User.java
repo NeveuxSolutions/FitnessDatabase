@@ -71,13 +71,13 @@ public class User {
         this.userId = userId;
     }
 
-//    public Gender getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(Gender gender) {
-//        this.gender = gender;
-//    }
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
     public String getPhone() {
         return phone;
@@ -110,14 +110,14 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-//
-//    public double getHeight() {
-//        return height;
-//    }
-//
-//    public void setHeight(double height) {
-//        this.height = height;
-//    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
 
     public ExperienceLevel getUserExperienceLevel() {
         return userExperienceLevel;

@@ -62,6 +62,10 @@ public class CaloricTotal implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.setTotalProtein();
+        this.setTotalCarbs();
+        this.setTotalFat();
+        this.setTotalCalories();
     }
 
     public double getTotalCalories() {

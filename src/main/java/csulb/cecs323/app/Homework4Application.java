@@ -41,11 +41,16 @@ public class Homework4Application {
        queryGenerator = new QueryGenerator(entityManager);
 
        initializeDatabase();
-       displayUserInterface();
+//       displayUserInterface();
    }
 
     private void initializeDatabase(){
-        initializer.test();
+//        initializer.test();
+        initializer.initializeFood();
+        initializer.initializeUsers();
+        initializer.initializeCheckins();
+        initializer.initializeMeal();
+
     }
 
     //@TODO should be outside console? so we dont have all the db print statements breaking up the user interface or should we just delete them all?

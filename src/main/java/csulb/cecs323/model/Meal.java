@@ -16,6 +16,7 @@ public class Meal {
     private long mealId;
     private String mealName;
     private Timestamp timeEaten;
+    private double mealCalories;
 
     //Relations
     @OneToMany(mappedBy = "meal")
@@ -43,6 +44,7 @@ public class Meal {
     }
 
     // GETTERS/SETTERS
+
     public String getMealName() {
         return mealName;
     }
@@ -57,5 +59,37 @@ public class Meal {
 
     public void setTimeEaten(Timestamp timeEaten) {
         this.timeEaten = timeEaten;
+    }
+
+    public Set<CaloricTotal> getCaloricTotals() {
+        return caloricTotals;
+    }
+
+    public void setCaloricTotals(Set<CaloricTotal> caloricTotals) {
+        this.caloricTotals = caloricTotals;
+    }
+
+    public Set<MealPlan> getMealPlans() {
+        return mealPlans;
+    }
+
+    public void setMealPlans(Set<MealPlan> mealPlans) {
+        this.mealPlans = mealPlans;
+    }
+
+    public double getMealCalories() {
+        return mealCalories;
+    }
+
+
+    /**
+     * IDK if we need this
+     */
+    public void setMealCalories() {
+        double totalCalories = 0.0;
+        for (CaloricTotal caloricTotal : caloricTotals) {
+            totalCalories += caloricTotal.getTotalCalories();
+        }
+        this.mealCalories = totalCalories;
     }
 }
