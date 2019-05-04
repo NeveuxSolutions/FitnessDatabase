@@ -1,6 +1,7 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,7 +25,7 @@ public class Exercise {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "EXERCISEASSIGNMENT", joinColumns = @JoinColumn(name = "exerciseId", referencedColumnName = "exerciseId"),
             inverseJoinColumns = @JoinColumn(name = "workoutId", referencedColumnName = "workoutId"))
-    private Set<Workout> workouts;
+    private Set<Workout> workouts = new HashSet<>();
 
     /**
      * Null Constructor
@@ -96,5 +97,9 @@ public class Exercise {
 
     public void setWorkouts(Set<Workout> workouts) {
         this.workouts = workouts;
+    }
+
+    public void addWorkout(Workout workout){
+        workouts.add(workout);
     }
 }

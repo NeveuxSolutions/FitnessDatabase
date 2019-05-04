@@ -104,4 +104,12 @@ public class Workout {
     public Set<Routine> getRoutines() {
         return routines;
     }
+
+    public void addCardio(Cardio cardio){
+        cardioExercises.add(cardio);
+    }
+
+    public void addExercise(Exercise exercise){
+        exercises.add(exercise);
+    }
 }

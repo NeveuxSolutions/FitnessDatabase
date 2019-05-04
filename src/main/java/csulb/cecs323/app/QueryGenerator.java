@@ -4,7 +4,6 @@ import csulb.cecs323.model.CheckIn;
 import csulb.cecs323.model.MealPlan;
 import csulb.cecs323.model.Program;
 import csulb.cecs323.model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;

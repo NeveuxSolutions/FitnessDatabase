@@ -21,6 +21,7 @@ public class EntityInitializer {
     private Routine[] routines = new Routine[20];
     private Workout[] workouts = new Workout[20];
     private Exercise[] exercises = new Exercise[20];
+    private MealPlan[] mealPlans = new MealPlan[20];
     Program[] programs = new Program[20];
 
     public EntityInitializer(EntityManager entityManager){
@@ -402,6 +403,7 @@ public class EntityInitializer {
         for (int i = 0; i < numberUsers; i++) {
             //Create Meal Plan Object
             MealPlan mealPlan = new MealPlan();
+            mealPlans[i] = mealPlan;
 
             //Get a meal
             Meal meal = getMeal("Chicken Breast/Broccoli/Almonds");
@@ -415,7 +417,9 @@ public class EntityInitializer {
         LOGGER.fine("Done Creating MealPlan Table");
     }
 
-
+    /**
+     * Method that adds initial routines to the database
+     */
     public void initializeRoutines(){
         String[] names = {
                 "Strength training for swimmers", "Body building contest preparation",
@@ -466,7 +470,9 @@ public class EntityInitializer {
         tx.commit();
         LOGGER.fine("Done Creating Routine Table");
     }
-
+    /**
+     * Method that adds initial workouts to the database
+     */
     public void initializeWorkouts(){
         String[] workoutDescriptions = {
                 "Low intensity recovery", "High intensity upper body strength",
@@ -518,7 +524,9 @@ public class EntityInitializer {
             }
         }
     }
-
+    /**
+     * Method that adds initial exercises to the database
+     */
     public void initializeExercises(){
         String[] exerciseNames = {
                 "Squat","Lunge","Deadlift","Calf Raise","Chest Fly", "Pull up",
@@ -565,15 +573,41 @@ public class EntityInitializer {
             exercise.setTempo(tempos[i]);
             exercise.setRepCount(reps[i]);
             exercise.setSetCount(sets[i]);
+          //  exercise.addWorkout(workouts[i]);
 
             exercises[i] = exercise;
             entityManager.persist(exercise);
+        }
+
+        //assign 5 exercises to each workout
+        for(Workout w : workouts){
+            int i = w.getWorkoutId();
+            if(w.getWorkoutId() < 10){
+                w.addExercise(exercises[i+1]);
+                w.addExercise(exercises[i+9]);
+                w.addExercise(exercises[i+4]);
+                w.addExercise(exercises[i+3]);
+                w.addExercise(exercises[i+7]);
+            }
+            if(i >= 10){
+                w.addExercise(exercises[i-1]);
+                w.addExercise(exercises[i-9]);
+                w.addExercise(exercises[i-4]);
+                w.addExercise(exercises[i-3]);
+                w.addExercise(exercises[i-7]);
+            }
+            for(Exercise e : w.getExercises()){
+                e.getWorkouts().add(w);
+            }
         }
 
         tx.commit();
         LOGGER.fine("Done Creating Exercise Table");
     }
 
+    /**
+     * Method that adds initial cardio activities to the database
+     */
     public void initializeCardio(){
         CardioActivity[] activity = {
                 CardioActivity.STAIRMASTER, CardioActivity.BIKE, CardioActivity.RUN,
@@ -598,6 +632,8 @@ public class EntityInitializer {
             cardio.setCardioType(types[i]);
             cardio.setDuration(durations[i]);
             cardio.setCardioActivity(activity[i]);
+            cardio.addWorkout(workouts[i]);
+            workouts[i].addCardio(cardio);
 
             entityManager.persist(cardio);
         }
@@ -605,7 +641,9 @@ public class EntityInitializer {
         tx.commit();
         LOGGER.fine("Done Creating Cardio Table");
     }
-
+    /**
+     * Method that adds initial programs to the database
+     */
     public void initializePrograms(){
         String[] startDates = {
                 "2017-01-04","2017-12-07","2017-09-08","2017-12-21","2017-06-26",
@@ -655,13 +693,17 @@ public class EntityInitializer {
             program.setEndDate(Date.valueOf(endDates[i]));
             program.setProgramDescription(programDescriptions[i]);
             program.setProgramGoal(goals[i]);
+            program.setClient(users[i]);
             program.setStatus(statuses[i]);
+            program.setMealPlan(mealPlans[i]);
+            program.setRoutine(routines[i]);
+            routines[i].setProgram(program);
 
             programs[i] = program;
             entityManager.persist(program);
         }
 
-        //adjust for programs still in progress
+        //adjust for programs still in-progress
         programs[7].setEndDate(null);
         programs[6].setEndDate(null);
         programs[17].setEndDate(null);
