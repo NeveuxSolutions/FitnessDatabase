@@ -41,7 +41,7 @@ public class Homework4Application {
        queryGenerator = new QueryGenerator(entityManager);
 
        initializeDatabase();
-//       displayUserInterface();
+       //displayUserInterface();
    }
 
     private void initializeDatabase(){
@@ -63,53 +63,73 @@ public class Homework4Application {
     //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
     private void displayUserInterface(){
        Scanner in = new Scanner(System.in);
-       int userInput = -1;
-        System.out.println("Welcome to our fitness application!");
+       int userInput;
+       int subMenuInput;
 
+       System.out.println("Welcome to our fitness application!\n\n");
 
-        while (true) {
-           System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
-           System.out.println("1. was one erased or did we just start at two in the google doc?");
-           System.out.println("2. List all user meal plans with less than 6 meals.");
-           System.out.println("3. Retrieve all exercises that are not assigned to a workout.");
-           System.out.println("4. Retrieve a count of how many users are not currently on a program.");
-           System.out.println("5. Count the number of workouts for a user.");
-           System.out.println("6. Retrieve strongest users.");
-           System.out.println("7. Retrieve meal plans by calorie count.");
-           System.out.println("8. Retrieve average weight loss for a user.");
-           System.out.println("9: Exit Program");
+       while (true) {
+           System.out.println(
+                   "Please enter the number corresponding to the action you would like to take and press enter\n" +
+                   "1. Display trends a trainer should monitor.\n" +
+                   "2. Create a new check-in \n" +
+                   "3. Remove a user\n" +
+                   "4. Count the number of workouts a specific user has done.\n" +
+                   "5. Retrieve the user who has lifted the most total weight\n" +
+                   "6. Retrieve meal plans based on their calorie count.\n" +
+                   "7. Retrieve the average weight loss for all users.\n" +
+                   "8. Quit");
+
            userInput = Integer.parseInt(in.next());
-
-           switch (userInput){
+           switch (userInput) {
                case 1:
-                        break;
-               case 2:
-                        queryGenerator.getMealPlansWith6OrLessMeals();
-                        break;
-               case 3:
-                        break;
-               case 4:
-                        break;
-               case 5:
-                        System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
-                        Scanner scanner5 = new Scanner(System.in);
+                   System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
+                   System.out.println("1. Display all users and show which users have never completed a program.");
+                   System.out.println("2. Display all exercises and show which are not assigned to a workout.");
+                   System.out.println("3. Retrieve a count of how many users are not currently on a program.");
+                   System.out.println("4. Return to the previous menu.");
+                   System.out.println("5. Quit");
 
-                        break;
+                   subMenuInput = Integer.parseInt(in.next());
+                   switch (subMenuInput) {
+                       case 1:
+                           queryGenerator.getMealPlansWith6OrLessMeals();
+                           break;
+                       case 2:
+                           //Retrieve all exercises that are not assigned to a workout
+                           break;
+                       case 3:
+                           //Retrieve a count of how many users are not currently on a program
+                           break;
+                       case 4:
+                           break;
+                       case 5:
+                           System.exit(0);
+                   }
+                   break;
+
+               case 2:
+                   //Create a new check-in
+                   break;
+               case 3:
+                   //Remove a user
+                   break;
+               case 4:
+                   System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
+                   //Count the number of workouts a specific user has done.
+                   break;
+               case 5:
+                   //Retrieve the user who has lifted the most total weight
+                   break;
                case 6:
-                        System.out.println("\nPlease enter the exercise name"); //want to just provide a numbered list of exercises?
-                        Scanner scanner6 = new Scanner(System.in);
-                        break;
+                   System.out.println("\nPlease enter desired number of average calories"); //want to just provide a numbered list of calorie totals
+                   //Retrieve meal plans based on their calorie count.
+                   break;
                case 7:
-                        System.out.println("\nPlease enter desired number of average calories"); //want to just provide a numbered list of calorie totals
-                        Scanner scanner7 = new Scanner(System.in);
-                        break;
+                  //Retrieve the average weight loss for all users
+                   break;
                case 8:
-                        System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
-                        Scanner scanner8 = new Scanner(System.in);
-                        queryGenerator.trialJoins();
-                        break;
-               case 9:  System.exit(0);
-                        break;
+                   System.exit(0);
            }
        }
     }

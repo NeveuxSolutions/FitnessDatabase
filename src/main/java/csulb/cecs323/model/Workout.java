@@ -1,7 +1,6 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
