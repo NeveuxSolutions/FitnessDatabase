@@ -13,7 +13,6 @@ public class Exercise {
     private String exerciseName;
     private int repCount;
     private int setCount;
-    private double weight;
 
     @Enumerated(EnumType.STRING)
     private BodyPart bodyPart;
@@ -102,13 +101,5 @@ public class Exercise {
 
     public void addWorkout(Workout workout){
         workouts.add(workout);
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
     }
 }

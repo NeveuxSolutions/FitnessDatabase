@@ -468,7 +468,6 @@ public class EntityInitializer {
 
         int[] reps = {35,7,12,23,8,4,2,6,10,11,15,3,5,17,4,2,8,12,12,6};
         int[] sets = {2,6,3,5,4,10,6,6,9,5,9,4,7,7,5,12,5,4,8,6};
-        double[] weights = {250,65,35,60,45,105,65,65,95,50,190,140,175,235,50,120,25,40,80,60};
 
         LOGGER.fine("Creating Exercise Table");
         EntityTransaction tx = entityManager.getTransaction();
@@ -483,7 +482,6 @@ public class EntityInitializer {
             exercise.setTempo(tempos[i]);
             exercise.setRepCount(reps[i]);
             exercise.setSetCount(sets[i]);
-            exercise.setWeight(weights[i]);
 
             exercises[i] = exercise;
             entityManager.persist(exercise);

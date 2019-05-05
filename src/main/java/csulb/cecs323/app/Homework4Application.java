@@ -40,7 +40,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-      // initializeDatabase();
+       //initializeDatabase();
        displayUserInterface();
    }
 
