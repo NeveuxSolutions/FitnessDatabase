@@ -1,6 +1,8 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
+import org.omg.PortableInterceptor.DISCARDING;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -198,11 +200,25 @@ public class EntityInitializer {
                 "Ground Turkey/Almonds", "Chicken Breast/Broccoli", "Salmon/Cottage Cheese", "Chicken Breast/Quinoa", "Eggs/Cashews",
                 "Salmon/Almonds", "Lean Beef/Almonds"};
 
+        Timestamp[] timestamps = {
+                Timestamp.valueOf("2018-04-19 13:00:00"),Timestamp.valueOf("2016-09-29 07:00:00"),
+                Timestamp.valueOf("2018-03-29 08:00:00"),Timestamp.valueOf("2017-03-22 11:00:00"),
+                Timestamp.valueOf("2017-04-11 01:15:00"),Timestamp.valueOf("2017-07-08 15:00:00"),
+                Timestamp.valueOf("2016-07-16 17:00:00"),Timestamp.valueOf("2017-02-14 10:00:00"),
+                Timestamp.valueOf("2016-02-28 21:00:00"),Timestamp.valueOf("2017-10-25 15:00:00"),
+                Timestamp.valueOf("2018-08-04 06:00:00"),Timestamp.valueOf("2018-06-06 14:30:00"),
+                Timestamp.valueOf("2018-03-27 03:00:00"),Timestamp.valueOf("2018-03-25 12:00:00"),
+                Timestamp.valueOf("2019-03-14 05:00:00"),Timestamp.valueOf("2017-06-16 20:00:00"),
+                Timestamp.valueOf("2017-05-20 19:00:00"),Timestamp.valueOf("2016-04-05 13:00:00"),
+                Timestamp.valueOf("2018-01-25 18:00:00"),Timestamp.valueOf("2016-12-28 20:00:00")
+        };
+
         // Iterate through all the meals
         for (int i = 0; i < meals.length; i++) {
             //Create a new meal
             Meal meal = new Meal();
             meal.setMealName(meals[i]);
+            meal.setTimeEaten(timestamps[i]);
 
             //Get a single meal and tokenize the words
             String[] food_list = meals[i].split("\\/");
@@ -247,12 +263,37 @@ public class EntityInitializer {
                 "Low Calorie mobility", "High Calorie Protein/Carb",
                 "Strength Training High Protein", "Fat Loss Low Carb"};
 
+        String[] dietDescription = {
+                "A meal plan for swimmers", "A bodybuilding prep meal plan",
+                "NFL players meal plan", "A meal plan for rehabilitation",
+                "A contest prep meal plan for bodybuilders", "Triathalon meal plan",
+                "Low calorie endurance meal plan", "Strength meal plan for gymnastics",
+                "Meal plan for youth", "Rehabilitation for acl tear meal plan",
+                "Special needs meal plan", "Endurance meal plan for swimming",
+                "Carb endurance meal plan", "High protein meal plan for youth",
+                "High calorie meal plan for impact training", "High carb for endurance training",
+                "Low calorie for mobility meal plan", "High calorie protein/carb meal plan",
+                "Strength training high protein meal plan", "Fat loss meal plan with low carbs"
+        };
+
+        DietGoal[] dietGoals = {
+                DietGoal.MAINTENANCE, DietGoal.FAT_LOSS, DietGoal.BULKING,
+                DietGoal.FAT_LOSS, DietGoal.FAT_LOSS, DietGoal.BULKING,
+                DietGoal.FAT_LOSS, DietGoal.BULKING, DietGoal.MAINTENANCE,
+                DietGoal.BULKING, DietGoal.FAT_LOSS, DietGoal.MAINTENANCE,
+                DietGoal.MAINTENANCE, DietGoal.MAINTENANCE, DietGoal.FAT_LOSS,
+                DietGoal.BULKING, DietGoal.MAINTENANCE, DietGoal.FAT_LOSS,
+                DietGoal.FAT_LOSS, DietGoal.BULKING
+        };
+
         //@TODO This is trash. Just trying to test
         for (int i = 0; i < users.length; i++) {
 
             //Create Meal Plan Object
             MealPlan mealPlan = new MealPlan();
             mealPlan.setMealPlanName(mealPlanName[i]);
+            mealPlan.setDietDescription(dietDescription[i]);
+            mealPlan.setDietGoal(dietGoals[i]);
 
             //Assign random number of meals to mealplan
             Random rand = new Random();

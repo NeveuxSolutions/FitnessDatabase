@@ -51,10 +51,10 @@ public class CaloricTotal implements Serializable {
                 Objects.equals(totalCalories, that.totalCalories);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(food.getName(), meal.getMealName(), totalCalories);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(food.getName(), meal.getMealName(), totalCalories);
+//    }
 
     public int getQuantity() {
         return quantity;

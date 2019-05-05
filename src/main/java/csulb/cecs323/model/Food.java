@@ -19,7 +19,7 @@ public class Food {
     private double gramsFat;
 
     @OneToMany(mappedBy = "food")
-    private Set<CaloricTotal> caloricTotals = new HashSet<>();
+    private Set<CaloricTotal> caloricTotals;
 
     /**
      * Null Constructor

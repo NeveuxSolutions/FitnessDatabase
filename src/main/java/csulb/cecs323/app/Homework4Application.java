@@ -52,7 +52,7 @@ public class Homework4Application {
 //        initializer.initializeCheckins();
         initializer.initializeMeal();
 //        initializer.initializeWorkouts();
-//        initializer.initializeMealPlan();
+        initializer.initializeMealPlan();
 //        initializer.initializeRoutines();
 //        initializer.initializePrograms();
 

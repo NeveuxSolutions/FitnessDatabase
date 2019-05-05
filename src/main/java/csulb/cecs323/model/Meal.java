@@ -27,7 +27,7 @@ public class Meal {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MEALASSIGNMENTS", joinColumns = @JoinColumn(name = "mealId", referencedColumnName = "mealId"),
     inverseJoinColumns = @JoinColumn(name = "mealPlanId", referencedColumnName = "mealPlanId"))
-    private List<MealPlan> mealPlans = new ArrayList<>();
+    private List<MealPlan> mealPlans;
 
     /**
      * Null Constructor
