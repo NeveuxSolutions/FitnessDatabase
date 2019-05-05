@@ -53,8 +53,8 @@ public class Homework4Application {
         initializer.initializeWorkouts();
         initializer.initializeExercises();
         initializer.initializeCardio();
-        initializer.initializePrograms();
         initializer.initializeMealPlan();
+        initializer.initializePrograms();
 
     }
 
@@ -111,12 +111,11 @@ public class Homework4Application {
                    creator.createCheckInFromConsole();
                    break;
                case 3:
-                   //Remove a routine
-                   creator.removeRoutineFromConsole();
+                   //Remove a user
                    break;
                case 4:
+                   System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
                    //Count the number of workouts a specific user has done.
-                   queryGenerator.countUserWorkouts();
                    break;
                case 5:
                    //Retrieve the user who has lifted the most total weight
