@@ -2,9 +2,7 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class MealPlan {
@@ -49,8 +47,8 @@ public class MealPlan {
         return numberOfMeals;
     }
 
-    public void setNumberOfMeals(int numberOfMeals) {
-        this.numberOfMeals = numberOfMeals;
+    public void setNumberOfMeals() {
+        this.numberOfMeals = meals.size();
     }
 
     public String getDietDescription() {

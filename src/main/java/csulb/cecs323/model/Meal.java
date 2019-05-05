@@ -2,6 +2,7 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class Meal {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MEALASSIGNMENTS", joinColumns = @JoinColumn(name = "mealId", referencedColumnName = "mealId"),
     inverseJoinColumns = @JoinColumn(name = "mealPlanId", referencedColumnName = "mealPlanId"))
-    private List<MealPlan> mealPlans;
+    private List<MealPlan> mealPlans = new ArrayList<>();
 
     /**
      * Null Constructor
@@ -36,11 +37,9 @@ public class Meal {
     /**
      * Overloaded Constructor
      * @param mealName Name of the meal
-     * @param mealPlans the mealPlan the meal is being assigned to
      */
-    public Meal(String mealName, MealPlan mealPlans) {
+    public Meal(String mealName) {
         this.mealName = mealName;
-
     }
 
     // GETTERS/SETTERS
@@ -68,6 +67,8 @@ public class Meal {
     public void setCaloricTotals(Set<CaloricTotal> caloricTotals) {
         this.caloricTotals = caloricTotals;
     }
+
+    public void addCaloricTotal(CaloricTotal caloricTotal) { this.caloricTotals.add(caloricTotal); }
 
     public void assignToMealPlan(MealPlan mealPlans) {
         this.mealPlans.add(mealPlans);

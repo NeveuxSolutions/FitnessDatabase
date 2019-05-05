@@ -1,6 +1,7 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,11 +18,8 @@ public class Food {
     @Column(nullable=false)
     private double gramsFat;
 
-    @Enumerated(EnumType.STRING)
-    private FoodType foodType;
-
     @OneToMany(mappedBy = "food")
-    private Set<CaloricTotal> caloricTotals;
+    private Set<CaloricTotal> caloricTotals = new HashSet<>();
 
     /**
      * Null Constructor
@@ -34,14 +32,12 @@ public class Food {
      * @param protein amount of protein / gram
      * @param carbs amount of carbs / gram
      * @param fat amount of fat / gram
-     * @param type Enum category of food (CARBOHYDRATE/PROTEIN/FAT)
      */
-    public void Food(String name, double protein, double carbs, double fat, FoodType type) {
+    public void Food(String name, double protein, double carbs, double fat) {
         this.name = name;
         this.gramsProtein = protein;
         this.gramsCarb = carbs;
         this.gramsFat = fat;
-        this.foodType = type;
     }
 
     // GETTERS/SETTERS
@@ -77,11 +73,4 @@ public class Food {
         this.gramsFat = gramsFat;
     }
 
-    public FoodType getFoodType() {
-        return foodType;
-    }
-
-    public void setFoodType(FoodType foodType) {
-        this.foodType = foodType;
-    }
 }

@@ -10,6 +10,8 @@ import static csulb.cecs323.model.CardioActivity.*;
 import static csulb.cecs323.model.CardioType.*;
 import static csulb.cecs323.model.ProgramGoal.*;
 import static csulb.cecs323.model.Status.*;
+
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class EntityInitializer {
@@ -22,6 +24,7 @@ public class EntityInitializer {
     private Workout[] workouts = new Workout[20];
     private Exercise[] exercises = new Exercise[20];
     private MealPlan[] mealPlans = new MealPlan[20];
+    private Meal[] meal_list = new Meal[20];
     Program[] programs = new Program[20];
 
     public EntityInitializer(EntityManager entityManager){
@@ -144,144 +147,6 @@ public class EntityInitializer {
         LOGGER.fine("Done creating default check-ins");
     }
 
-//    /**
-//     * Loads 10 default workouts into the database.
-//     */
-//    public void initializeWorkouts(){
-//        LOGGER.fine("Creating default workouts");
-//
-//        LOGGER.fine("Done creating default workouts");
-//    }
-//
-//    public void initializeFood(){
-//        LOGGER.fine("Creating default food");
-//
-//        EntityTransaction tx = entityManager.getTransaction();
-//        tx.begin();
-//
-//        Food food = new Food();
-//        food.setName("banana");
-//        food.setFoodType(FoodType.CARBOHYDRATE);
-//        food.setGramsCarb(.23);
-//        food.setGramsFat(.003);
-//        food.setGramsProtein(1.1);
-//        foods[0] = food;
-//
-//        entityManager.persist(food);
-//        tx.commit();
-//        LOGGER.fine("Done creating default food");
-//    }
-
-//    public void initializeCaloricTotals(){
-//        LOGGER.fine("Creating default Caloric Total");
-//
-//        EntityTransaction tx = entityManager.getTransaction();
-//        tx.begin();
-//
-//        CaloricTotal caloricTotal = new CaloricTotal();
-//        caloricTotal.setFood(foods[0]);
-//        caloricTotal.setQuantity(2);
-//
-//
-//        entityManager.persist(caloricTotal);
-//        tx.commit();
-//        LOGGER.fine("Done creating default Caloric Total");
-//    }
-
-    public void test() {
-        LOGGER.fine("Creating Test Caloric junction table");
-
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-
-        // Food - Chicken
-        Food chicken = new Food();
-        chicken.setName("Chicken");
-        chicken.setFoodType(FoodType.PROTEIN);
-        chicken.setGramsCarb(0.0);
-        chicken.setGramsFat(.003);
-        chicken.setGramsProtein(.20);
-
-        // Food - Broccoli
-        Food broccoli = new Food();
-        broccoli.setName("Broccoli");
-        broccoli.setFoodType(FoodType.CARBOHYDRATE);
-        broccoli.setGramsCarb(0.07);
-        broccoli.setGramsFat(.003);
-        broccoli.setGramsProtein(.003);
-
-        entityManager.persist(chicken);
-        entityManager.persist(broccoli);
-
-        // Meal
-        Meal meal_1 = new Meal();
-        meal_1.setMealName("Chicken/BroccoliTest1");
-
-        entityManager.persist(meal_1);
-
-        // Adding Chicken to meal
-        CaloricTotal caloricTotal = new CaloricTotal(chicken, meal_1);
-        caloricTotal.setQuantity(200);
-        caloricTotal.setTotalProtein();
-        caloricTotal.setTotalCarbs();
-        caloricTotal.setTotalFat();
-        caloricTotal.setTotalCalories();
-
-        // Adding broccoli to meal
-        CaloricTotal caloricTotal12 = new CaloricTotal(broccoli, meal_1);
-        caloricTotal12.setQuantity(100);
-        caloricTotal12.setTotalProtein();
-        caloricTotal12.setTotalCarbs();
-        caloricTotal12.setTotalFat();
-        caloricTotal12.setTotalCalories();
-
-        entityManager.persist(caloricTotal);
-        entityManager.persist(caloricTotal12);
-
-        // MealPlan
-        MealPlan mealPlan = new MealPlan("ChickenTestMealPlan");
-        Meal meal_2 = new Meal("ChickenTest", mealPlan);
-        entityManager.persist(meal_2);
-
-        mealPlan.setMeal(meal_2);
-
-
-        //Routine
-        Routine routineTest = new Routine("TestRoutine");
-        entityManager.persist(routineTest);
-
-        //Workout
-        Workout workout = new Workout("Testing a workout", 1, routineTest);
-        entityManager.persist(workout);
-
-        //Cardio Exercise
-        Cardio run = new Cardio(CardioActivity.RUN, workout);
-        entityManager.persist(run);
-
-        //Weight Lifting Exercise
-        Exercise benchPress = new Exercise("Bench Press", workout);
-        entityManager.persist(benchPress);
-
-        //Weight Lifting Exercise 2
-        Exercise barbellRow = new Exercise("Barbell Row", workout);
-        entityManager.persist(barbellRow);
-
-        //User
-        User userTest = new User("Test", "test");
-        entityManager.persist(userTest);
-
-        // Program
-        Program programTest = new Program("Test Program", userTest);
-        programTest.setRoutine(routineTest);
-        programTest.setMealPlan(mealPlan);
-        routineTest.setProgram(programTest);
-        mealPlan.setProgram(programTest);
-        entityManager.persist(programTest);
-
-        tx.commit();
-        LOGGER.fine("Done creating test Caloric Total");
-    }
-
     /**
      * Method to add foods to the database
      */
@@ -290,7 +155,7 @@ public class EntityInitializer {
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
-        String[] foods =
+        String[] food_list =
                 {"Chicken Breast", "Eggs", "Almonds", "Oats", "Cottage Cheese",
                 "Greek Yogurt", "Milk", "Broccoli", "Lean Beef", "Tuna",
                 "Quinoa", "Whey Protein", "Ground Turkey", "Salmon", "Shrimp",
@@ -301,13 +166,14 @@ public class EntityInitializer {
         double[] protein = {.31, .13, .21, .02, .11, .1, .03, .03, .26, .25, .04, .75, .27, .20, .24, .03, .18};
 
 
-        for (int i = 0; i < foods.length; i++) {
+        for (int i = 0; i < food_list.length; i++) {
             //Create Food
             Food food = new Food();
-            food.setName(foods[i]);
+            food.setName(food_list[i]);
             food.setGramsProtein(protein[i]);
             food.setGramsCarb(carb[i]);
             food.setGramsFat(fat[i]);
+            foods[i] = food;
 
             //Persist in database
             entityManager.persist(food);
@@ -317,7 +183,6 @@ public class EntityInitializer {
         LOGGER.fine("Done Creating Food Table");
     }
 
-
     /**
      * Method to initialize meals to the database
      */
@@ -326,8 +191,12 @@ public class EntityInitializer {
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
-        String[] meals = {"Chicken Breast/Broccoli/Almonds", "Chicken Breast/Brussels Sprout", "Lean Beef/Quinoa",
-                "Eggs/Oats/Milk", "Ground Turkey/Broccoli", "Salmon/Cashews", "Tuna/Cottage Cheese", "Shrimp/Brussels Sprout"};
+        String[] meals = {
+                "Chicken Breast/Broccoli/Almonds", "Chicken Breast/Brussels Sprout", "Lean Beef/Quinoa",
+                "Eggs/Oats/Milk", "Ground Turkey/Broccoli", "Salmon/Cashews", "Tuna/Cottage Cheese", "Shrimp/Brussels Sprout",
+                "Eggs/Oats", "Salmon/Broccoli", "Chicken Breast/Cottage Cheese", "Shrimp/Cottage Cheese", "Lean Beef/Broccoli",
+                "Ground Turkey/Almonds", "Chicken Breast/Broccoli", "Salmon/Cottage Cheese", "Chicken Breast/Quinoa", "Eggs/Cashews",
+                "Salmon/Almonds", "Lean Beef/Almonds"};
 
         // Iterate through all the meals
         for (int i = 0; i < meals.length; i++) {
@@ -346,65 +215,56 @@ public class EntityInitializer {
                 CaloricTotal caloricTotal = new CaloricTotal(food, meal);
 
                 //Set amount
-                caloricTotal.setQuantity(100);
+                Random rand = new Random();
+                int amount = rand.nextInt(200) + 50;
+                caloricTotal.setQuantity(amount);
+                meal.addCaloricTotal(caloricTotal);
+                meal.setMealCalories();
                 entityManager.persist(meal);
                 entityManager.persist(caloricTotal);
             }
-            System.out.println("Next Meal");
+            meal_list[i] = meal;
         }
 
         tx.commit();
         LOGGER.fine("Done Creating Meal Table");
     }
 
-    /**
-     * Query to get a single food by given name.
-     * @param name the name of the food to be retrieved
-     * @return the food found
-     */
-    private Food getFood(String name) {
-        Query query = entityManager.createQuery("SELECT f " + "FROM Food f " + "WHERE f.name LIKE :name");
-        return (Food) query.setParameter("name", name).getSingleResult();
-    }
-
-    /**
-     * Query to get a single meal
-     * @param meal the name of the meal
-     * @return the meal found
-     */
-    private Meal getMeal(String meal) {
-        Query query = entityManager.createQuery("SELECT m FROM Meal m WHERE m.mealName LIKE :meal");
-        return (Meal) query.setParameter("meal", meal).getSingleResult();
-    }
-
-    /**
-     * Query to get a user by specified name
-     * @param fName the first name of the user
-     * @param lName the last name of the user
-     * @return the retrieved user
-     */
-    private User getUser(String fName, String lName) {
-        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.fName LIKE :fName AND u.lName LIKE :lName");
-        return (User) query.setParameter("fName", fName).setParameter("lName", lName).getSingleResult();
-    }
-
-
     public void initializeMealPlan() {
         LOGGER.fine("Creating MealPlan Table");
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
+        String[] mealPlanName = {
+                "Meal plan for swimmers", "Bodybuilding Prep",
+                "NFL Strength Meals", "Rehabilitation",
+                "Contest Prep", "Triathalon High Carb",
+                "Low Cal Endurance Plan", "Strength for Gymnastics",
+                "Youth Strength", "Rehabilitation for acl",
+                "Special Needs Endurance", "Swimming Endurance",
+                "Med Carb Endurance", "High protein Youth",
+                "High Calorie Impact Plan", "High Carb Endurance",
+                "Low Calorie mobility", "High Calorie Protein/Carb",
+                "Strength Training High Protein", "Fat Loss Low Carb"};
+
         //@TODO This is trash. Just trying to test
-        int numberUsers = 20;
-        for (int i = 0; i < numberUsers; i++) {
+        for (int i = 0; i < users.length; i++) {
+
             //Create Meal Plan Object
             MealPlan mealPlan = new MealPlan();
+            mealPlan.setMealPlanName(mealPlanName[i]);
+
+            //Assign random number of meals to mealplan
+            Random rand = new Random();
+            int numMeals = rand.nextInt(6) + 1;
+            for (int j = 0; j < numMeals; j++) {
+                Meal meal = meal_list[j];
+                meal.assignToMealPlan(mealPlan);
+                mealPlan.setMeal(meal);
+            }
+
+            mealPlan.setNumberOfMeals();
             mealPlans[i] = mealPlan;
-
-            //Get a meal
-            Meal meal = getMeal("Chicken Breast/Broccoli/Almonds");
-            meal.assignToMealPlan(mealPlan);
-
             //Assign the meal to the meal plan
             entityManager.persist(mealPlan);
         }
@@ -460,7 +320,6 @@ public class EntityInitializer {
 
             routines[i] = routine;
             entityManager.persist(routine);
-            routines[i] = routine;
         }
 
         tx.commit();
@@ -707,5 +566,40 @@ public class EntityInitializer {
 
         tx.commit();
         LOGGER.fine("Done Creating Program Table");
+    }
+
+    //--------------------------------------------------------
+    // Private Query methods to pull data from static tables
+    //--------------------------------------------------------
+
+    /**
+     * Query to get a single food by given name.
+     * @param name the name of the food to be retrieved
+     * @return the food found
+     */
+    private Food getFood(String name) {
+        Query query = entityManager.createQuery("SELECT f " + "FROM Food f " + "WHERE f.name LIKE :name");
+        return (Food) query.setParameter("name", name).getSingleResult();
+    }
+
+    /**
+     * Query to get a single meal
+     * @param meal the name of the meal
+     * @return the meal found
+     */
+    private Meal getMeal(String meal) {
+        Query query = entityManager.createQuery("SELECT m FROM Meal m WHERE m.mealName LIKE :meal");
+        return (Meal) query.setParameter("meal", meal).getSingleResult();
+    }
+
+    /**
+     * Query to get a user by specified name
+     * @param fName the first name of the user
+     * @param lName the last name of the user
+     * @return the retrieved user
+     */
+    private User getUser(String fName, String lName) {
+        Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.fName LIKE :fName AND u.lName LIKE :lName");
+        return (User) query.setParameter("fName", fName).setParameter("lName", lName).getSingleResult();
     }
 }
