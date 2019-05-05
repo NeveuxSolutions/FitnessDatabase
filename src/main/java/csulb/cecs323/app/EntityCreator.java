@@ -97,4 +97,21 @@ public class EntityCreator {
         tx.commit();
         System.out.println("Check-in successfully added!");
     }
+
+    public void removeRoutineFromConsole(){
+        Scanner in = new Scanner(System.in);
+        int routineId;
+        Routine routine;
+        EntityTransaction tx = entityManager.getTransaction();
+
+        System.out.println("Please enter the routineId to be removed");
+        routineId = in.nextInt();
+        tx.begin();
+
+        Query usersQuery = entityManager.createQuery("SELECT r FROM Routine r WHERE r.routineId = ?1");
+        usersQuery.setParameter(1, routineId);
+        routine = (Routine) usersQuery.getSingleResult();
+        entityManager.remove(routine);
+        tx.commit();
+    }
 }

@@ -380,6 +380,17 @@ public class EntityInitializer {
                 "Low volume fast tempo compound lifts", "Upper back concentrics",
                 "Fartlek run with post-run mobility", "200m sprints on the minute every minute",
                 "Lower back release", "Gymnastic rings introduction"};
+        String[]  dates = {
+                "2017-01-12","2017-12-08","2017-09-09","2017-12-22","2017-06-27",
+                "2018-03-07","2017-01-08","2017-09-16","2018-05-03","2017-04-22",
+                "2018-02-28","2018-02-04","2017-05-22","2017-11-05","2018-08-14",
+                "2018-04-08","2017-05-08","2018-07-18","2018-03-25","2018-07-05"};
+
+        Status[] statuses = {
+                COMPLETED, PLANNED, COMPLETED,PLANNED,COMPLETED,
+                COMPLETED,INPROGRESS,INPROGRESS,COMPLETED,COMPLETED,
+                COMPLETED, PLANNED, COMPLETED,PLANNED,COMPLETED,
+                COMPLETED,INPROGRESS,INPROGRESS,COMPLETED,COMPLETED};
 
         int[] days = new int[]{1, 4, 3, 7, 4, 6, 3, 4, 2, 5, 1, 5, 7, 4, 2, 4, 6, 3, 7, 3};
         int[] startTime = new int[]{9, 12, 12, 9, 21, 6, 6, 12, 14, 15, 16, 6, 12, 13, 15, 10, 11, 13, 14, 13};
@@ -391,6 +402,8 @@ public class EntityInitializer {
         for (int i = 0; i < 20; i++) {
             Workout workout = new Workout(workoutDescriptions[i], days[i], routines[i]);
             workout.setWorkoutStartTime(startTime[i]);
+            workout.setStatusDate(Date.valueOf(dates[i]));
+            workout.setStatus(statuses[i]);
             entityManager.persist(workout);
             workouts[i] = workout;
         }
@@ -469,7 +482,6 @@ public class EntityInitializer {
             exercise.setTempo(tempos[i]);
             exercise.setRepCount(reps[i]);
             exercise.setSetCount(sets[i]);
-          //  exercise.addWorkout(workouts[i]);
 
             exercises[i] = exercise;
             entityManager.persist(exercise);

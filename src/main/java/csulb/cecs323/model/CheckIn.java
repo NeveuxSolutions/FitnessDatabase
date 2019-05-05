@@ -12,13 +12,14 @@ public class CheckIn {
     private int checkInId;
     @NotNull
     private Timestamp checkInTimeStamp;
+
     @Min(value = 40, message = "User can't weight less than 40lbs")
     private double weight;
     @Min(value = 1, message = "User can't have less than 1%BF ") @Max(value = 65, message = "User can not exceed 65%BF")
     private double bodyFat;
 
-    //@TODO review/insert cascades + make checkin timestamp a unique ck change the userID db column name
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)//not sure about cascade just put it in as a reminder
+    @JoinColumn (name="UserId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private User userId;
 
     /**

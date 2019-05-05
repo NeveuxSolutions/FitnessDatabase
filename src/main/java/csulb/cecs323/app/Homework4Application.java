@@ -46,15 +46,15 @@ public class Homework4Application {
 
     private void initializeDatabase(){
         initializer.initializeFood();
-//        initializer.initializeCardio();
-//        initializer.initializeExercises();
-//        initializer.initializeUsers();
-//        initializer.initializeCheckins();
+        initializer.initializeUsers();
+        initializer.initializeCheckins();
         initializer.initializeMeal();
-//        initializer.initializeWorkouts();
+        initializer.initializeRoutines();
+        initializer.initializeWorkouts();
+        initializer.initializeExercises();
+        initializer.initializeCardio();
+        initializer.initializePrograms();
         initializer.initializeMealPlan();
-//        initializer.initializeRoutines();
-//        initializer.initializePrograms();
 
     }
 
@@ -111,11 +111,12 @@ public class Homework4Application {
                    creator.createCheckInFromConsole();
                    break;
                case 3:
-                   //Remove a user
+                   //Remove a routine
+                   creator.removeRoutineFromConsole();
                    break;
                case 4:
-                   System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
                    //Count the number of workouts a specific user has done.
+                   queryGenerator.countUserWorkouts();
                    break;
                case 5:
                    //Retrieve the user who has lifted the most total weight

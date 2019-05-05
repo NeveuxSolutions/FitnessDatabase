@@ -1,12 +1,11 @@
 package csulb.cecs323.app;
 
-import csulb.cecs323.model.CheckIn;
-import csulb.cecs323.model.MealPlan;
-import csulb.cecs323.model.Program;
-import csulb.cecs323.model.User;
+import csulb.cecs323.model.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Scanner;
 
 public class QueryGenerator {
     private EntityManager entityManager;
@@ -75,8 +74,24 @@ public class QueryGenerator {
     }
 
     public void countUserWorkouts(){
+        Scanner in = new Scanner(System.in);
+        int userId;
 
+        System.out.println("\nPlease enter the user's Id");
+        Query query = entityManager.createQuery("SELECT u.userId FROM User u");
+        List<Integer> resultList = query.getResultList();
+        userId = in.nextInt();
 
+        while (!resultList.contains(userId)){
+            System.out.println("Invalid entry, please enter a valid ID (ex:3)");
+            userId = in.nextInt();
+        }
+
+        Query countQuery = entityManager.createQuery("SELECT COUNT(w.workoutId) FROM User u INNER JOIN Program p ON u= p.client INNER JOIN Routine r ON  p=r.program INNER JOIN Workout w WHERE u.userId = ?1 AND w.status = ?2");
+        countQuery.setParameter(1, userId);
+        countQuery.setParameter(2, Status.COMPLETED);
+        long count = (Long) countQuery.getSingleResult();
+        System.out.println("User " + userId + " has completed " + count + " workouts.");
     }
 
     public void getStrongestUser(){
