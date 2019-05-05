@@ -40,7 +40,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-       initializeDatabase();
+//       initializeDatabase();
        displayUserInterface();
    }
 
@@ -94,6 +94,7 @@ public class Homework4Application {
                            queryGenerator.getMealPlansWith6OrLessMeals();
                            break;
                        case 2:
+                           queryGenerator.userMealPlans();
                            //Retrieve all exercises that are not assigned to a workout
                            break;
                        case 3:

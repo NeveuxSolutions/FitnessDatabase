@@ -104,4 +104,12 @@ public class QueryGenerator {
 
     public void getAverageWeightLoss(){
     }
+
+    public void userMealPlans() {
+        Query query = entityManager.createQuery("SELECT u FROM User u INNER JOIN Program p ON u=p.client");
+        List<User> users = query.getResultList();
+        for(User user : users) {
+            System.out.println(user.getfName());
+        }
+    }
 }
