@@ -270,10 +270,6 @@ public class EntityInitializer {
         User userTest = new User("Test", "test");
         entityManager.persist(userTest);
 
-        //Check IN
-        CheckIn checkInTest = new CheckIn(userTest);
-        entityManager.persist(checkInTest);
-
         // Program
         Program programTest = new Program("Test Program", userTest);
         programTest.setRoutine(routineTest);

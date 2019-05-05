@@ -4,13 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.util.ArrayList;
 
-//need to do enums, cks and fks + junction with programs
 @Entity
 @Table(
     uniqueConstraints = @UniqueConstraint(columnNames={"phone", "fName", "lName"})
 )
 public class User {
-    //@TODO add check contraints for things like age >0 phone numbers, heights>0 and non nulls
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private double height;
@@ -53,7 +51,6 @@ public class User {
         this.height = 10;
     }
 
-
     public void addCheckIn(CheckIn appointment){
         checkIns.add(appointment);
     }
@@ -61,7 +58,6 @@ public class User {
     public void addProgram(Program program){
         programs.add(program);
     }
-
 
     public int getUserId() {
         return userId;

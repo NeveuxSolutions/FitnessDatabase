@@ -41,36 +41,34 @@ public class Homework4Application {
        queryGenerator = new QueryGenerator(entityManager);
 
        initializeDatabase();
-       //displayUserInterface();
+       displayUserInterface();
    }
 
     private void initializeDatabase(){
-//        initializer.test();
         initializer.initializeFood();
         initializer.initializeUsers();
         initializer.initializeCheckins();
-        initializer.initializeMeal();
-        initializer.initializeRoutines();
-        initializer.initializeWorkouts();
-        initializer.initializeExercises();
-        initializer.initializeCardio();
-        initializer.initializePrograms();
-        initializer.initializeMealPlan();
+//        initializer.initializeMeal();
+//        initializer.initializeRoutines();
+//        initializer.initializeWorkouts();
+//        initializer.initializeExercises();
+//        initializer.initializeCardio();
+//        initializer.initializePrograms();
+//        initializer.initializeMealPlan();
 
     }
 
-    //@TODO should be outside console? so we dont have all the db print statements breaking up the user interface or should we just delete them all?
     //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
     private void displayUserInterface(){
        Scanner in = new Scanner(System.in);
        int userInput;
        int subMenuInput;
 
-       System.out.println("Welcome to our fitness application!\n\n");
+       System.out.println("Welcome to our fitness application!\n");
 
        while (true) {
            System.out.println(
-                   "Please enter the number corresponding to the action you would like to take and press enter\n" +
+                   "\nPlease enter the number corresponding to the action you would like to take and press enter\n" +
                    "1. Display trends a trainer should monitor.\n" +
                    "2. Create a new check-in \n" +
                    "3. Remove a user\n" +
@@ -109,7 +107,8 @@ public class Homework4Application {
                    break;
 
                case 2:
-                   //Create a new check-in
+                   //create a new check-in
+                   creator.createCheckInFromConsole();
                    break;
                case 3:
                    //Remove a user
@@ -139,6 +138,7 @@ public class Homework4Application {
        LOGGER.fine("Creating EntityManagerFactory and EntityManager");
        EntityManagerFactory factory = Persistence.createEntityManagerFactory("homework4_PU");
        EntityManager manager = factory.createEntityManager();
+       System.out.println("It's running I just disabled all the db messages\n");
 
        Homework4Application hw4application = new Homework4Application(manager);
        hw4application.startApplication();

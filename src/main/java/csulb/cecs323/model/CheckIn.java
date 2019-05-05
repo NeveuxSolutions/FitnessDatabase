@@ -1,14 +1,20 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
 public class CheckIn {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int checkInId;
+    @NotNull
     private Timestamp checkInTimeStamp;
+    @Min(value = 40, message = "User can't weight less than 40lbs")
     private double weight;
+    @Min(value = 1, message = "User can't have less than 1%BF ") @Max(value = 65, message = "User can not exceed 65%BF")
     private double bodyFat;
 
     //@TODO review/insert cascades + make checkin timestamp a unique ck change the userID db column name
@@ -24,8 +30,11 @@ public class CheckIn {
      * Overloaded Constructor
      * @param user the user for this checkin
      */
-    public CheckIn(User user) {
+    public CheckIn(User user, double weight, double bodyFat, Timestamp checkInTimeStamp) {
         this.userId = user;
+        this.weight = weight;
+        this.bodyFat = bodyFat;
+        this.checkInTimeStamp = checkInTimeStamp;
     }
 
     //GETTERS/SETTERS

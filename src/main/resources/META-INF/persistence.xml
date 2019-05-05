@@ -33,7 +33,7 @@
       <property name="eclipselink.ddl-generation.output-mode" value="database" />
 
       <!-- Change property value to OFF or WARNING to disable and minimize logging. -->
-      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level" value="SEVERE"/>
 
     </properties>
 
