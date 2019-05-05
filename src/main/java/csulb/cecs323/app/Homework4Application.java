@@ -40,7 +40,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-//       initializeDatabase();
+      // initializeDatabase();
        displayUserInterface();
    }
 
@@ -53,9 +53,8 @@ public class Homework4Application {
         initializer.initializeWorkouts();
         initializer.initializeExercises();
         initializer.initializeCardio();
-        initializer.initializeMealPlan();
         initializer.initializePrograms();
-
+        initializer.initializeMealPlan();
     }
 
     //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
@@ -120,6 +119,7 @@ public class Homework4Application {
                    break;
                case 5:
                    //Retrieve the user who has lifted the most total weight
+                   queryGenerator.getStrongestUser();
                    break;
                case 6:
                    System.out.println("\nPlease enter desired number of average calories"); //want to just provide a numbered list of calorie totals

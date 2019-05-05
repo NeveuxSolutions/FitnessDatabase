@@ -95,8 +95,25 @@ public class QueryGenerator {
     }
 
     public void getStrongestUser(){
+        //Find the strongest user(s) by total weight lifted and list the programs and routines he has done
+        String fname, lname;
+        double weight = 0;
 
+        Query strongQuery = entityManager.createQuery("" +
+                "SELECT u,e FROM User u" +
+                "       INNER JOIN u.programs p" +
+                "       INNER JOIN p.routine r" +
+                "       INNER JOIN r.workouts w" +
+                "       INNER JOIN w.exercises e");
 
+        List<Object[]> strongList = strongQuery.getResultList();
+
+        for(Object[] o : strongList) {
+            fname = ((User) o[0]).getfName();
+            lname = ((User) o[0]).getlName();
+            weight = ((Exercise) o[1]).getWeight();
+            System.out.println(fname + " " + lname + " " + weight);
+        }
     }
 
     public void getMealPlanByCalorie(){
