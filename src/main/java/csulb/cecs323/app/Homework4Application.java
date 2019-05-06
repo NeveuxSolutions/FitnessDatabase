@@ -65,9 +65,9 @@ public class Homework4Application {
        while (true) {
            System.out.println(
                    "\nPlease enter the number corresponding to the action you would like to take and press enter\n" +
-                   "1. Display trends a trainer should monitor.\n" +
+                   "1. Display dietary options.\n" +
                    "2. Create a new check-in \n" +
-                   "3. Remove a user\n" +
+                   "3. Remove a workout from a routine\n" +
                    "4. Count the number of workouts a specific user been assigned.\n" +
                    "5. Retrieve programs with only users who are in their 20s\n" +
                    "6. Retrieve individuals on a program for diabetics and their diet.\n" +
@@ -79,9 +79,9 @@ public class Homework4Application {
            switch (userInput) {
                case 1:
                    System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
-                   System.out.println("1. Display all users and show which users have never completed a program.");
-                   System.out.println("2. Display all exercises and show which are not assigned to a workout.");
-                   System.out.println("3. Retrieve a count of how many users are not currently on a program.");
+                   System.out.println("1. Display the frequency each food is assigned.");
+                   System.out.println("2. Display .");
+                   System.out.println("3. Retrieve .");
                    System.out.println("4. Return to the previous menu.");
                    System.out.println("5. Quit");
 
@@ -92,10 +92,8 @@ public class Homework4Application {
                            break;
                        case 2:
                            queryGenerator.findTimeEaten();
-                           //Retrieve all exercises that are not assigned to a workout
                            break;
                        case 3:
-                           //Retrieve a count of how many users are not currently on a program
                            break;
                        case 4:
                            break;
@@ -103,16 +101,15 @@ public class Homework4Application {
                            System.exit(0);
                    }
                    break;
-
                case 2:
                    //create a new check-in
                    creator.createCheckInFromConsole();
                    break;
                case 3:
-                   //Remove a user
+                   creator.removeWorkoutFromConsole();
                    break;
                case 4:
-                   System.out.println("\nPlease enter the user's Id"); //or first name last name? or display users?
+                 //do we need this one?
                    //Count the number of workouts a specific user has done.
                    break;
                case 5:

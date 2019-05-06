@@ -31,21 +31,6 @@ public class QueryGenerator {
         }
     }
 
-    public void getUnassignedWorkouts(){
-
-
-    }
-
-    public void getUnassigedUsers(){
-
-
-    }
-
-    public void findMatchingCaloricIntake(){
-
-
-    }
-
     public void countUserWorkouts(){
         Scanner in = new Scanner(System.in);
         int userId;

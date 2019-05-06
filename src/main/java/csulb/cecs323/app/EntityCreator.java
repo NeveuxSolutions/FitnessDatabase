@@ -98,20 +98,61 @@ public class EntityCreator {
         System.out.println("Check-in successfully added!");
     }
 
-    public void removeRoutineFromConsole(){
+    /**
+     * Removes a workout from a routine
+     */
+    public void removeWorkoutFromConsole(){
         Scanner in = new Scanner(System.in);
+        int workoutId;
         int routineId;
-        Routine routine;
+        Workout workout;
         EntityTransaction tx = entityManager.getTransaction();
+        //find valid workout ids
+        Query workoutQuery = entityManager.createQuery("SELECT w.workoutId FROM Workout w");
+        List<Integer> workoutList = workoutQuery.getResultList();
 
-        System.out.println("Please enter the routineId to be removed");
+        System.out.println("Please enter the workoutId to be removed or 0 to return to main menu.");
+        workoutId = in.nextInt();
+        //check user input is valid
+        while (!workoutList.contains(workoutId) | workoutId == 0){
+            if(workoutId == 0){
+                return;
+            }
+            System.out.println("Invalid entry, please enter a valid workoutID or 0 to return to main menu.");
+            workoutId = in.nextInt();
+        }
+
+        System.out.println("Please enter the routineId to be removed 0 or to return to main menu.");
         routineId = in.nextInt();
-        tx.begin();
 
-        Query usersQuery = entityManager.createQuery("SELECT r FROM Routine r WHERE r.routineId = ?1");
+        //find valid routines
+        Query routineQuery = entityManager.createQuery("" +
+            "SELECT r.routineId " +
+            "FROM Workout w " +
+            "INNER JOIN w.routines r");
+
+        List<Integer> routineList = routineQuery.getResultList();
+        while (!routineList.contains(routineId) | routineId == 0){
+            if(routineId == 0){
+                return;
+            }
+            System.out.println("Invalid entry, please enter a valid routineID or 0 to return to main menu.");
+            routineId = in.nextInt();
+        }
+
+        //find the workout to remove
+        Query usersQuery = entityManager.createQuery("" +
+            "SELECT w " +
+            "FROM Workout w " +
+            "INNER JOIN w.routines r " +
+            "WHERE  r.routineId = ?1 AND w.workoutId = ?2");
+
         usersQuery.setParameter(1, routineId);
-        routine = (Routine) usersQuery.getSingleResult();
-        entityManager.remove(routine);
+        usersQuery.setParameter(2, workoutId);
+        workout = (Workout) usersQuery.getSingleResult();
+
+        tx.begin();
+        entityManager.remove(workout);
         tx.commit();
     }
 
