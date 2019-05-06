@@ -1,17 +1,12 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
-import javafx.beans.binding.ObjectExpression;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class QueryGenerator {
     private EntityManager entityManager;
@@ -220,7 +215,14 @@ public class QueryGenerator {
      * Query to find the average weight of users who weigh more than 200lbs
      */
     public void findAverageWeight() {
-        Query query = entityManager.createQuery("SELECT u.fName, u.lName, AVG(c.weight) FROM CheckIn c INNER JOIN User u ON u=c.userId INNER JOIN Program p ON u=p.client GROUP BY u.fName, u.lName, c.weight HAVING c.weight > 200");
+        Query query = entityManager.createQuery(
+                "SELECT u.fName, u.lName, AVG(c.weight)" +
+                        "FROM CheckIn c " +
+                        "INNER JOIN User u ON u=c.userId " +
+                        "INNER JOIN Program p ON u=p.client " +
+                        "GROUP BY u.fName, u.lName, c.bodyFat, c.weight " +
+                        "HAVING c.bodyFat > 15");
+
         List<Object[] > list = query.getResultList();
         for (Object[] o : list) {
             System.out.println(o[0] + " " + o[1] + " " + Math.round((double)o[2]));
