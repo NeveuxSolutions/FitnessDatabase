@@ -1,7 +1,6 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Date;
@@ -267,6 +266,59 @@ public class QueryGenerator {
         List<Object[] > list = query.getResultList();
         for (Object[] o : list) {
             System.out.println(o[0] + " " + o[1]);
+        }
+    }
+
+    public void setDifference(){
+        String fname;
+        String lname;
+        long programs;
+        long checkIns;
+
+        Query differenceQuery = entityManager.createQuery("" +
+                "SELECT DISTINCT u, Count(c), Count(p) " +
+                "FROM User u" +
+                "   LEFT JOIN u.checkIns c " +
+                "   LEFT JOIN u.programs p " +
+                "   WHERE p.status NOT IN (" +
+                "       SELECT p2.status" +
+                "       FROM Program p2" +
+                "           WHERE p2.status = ?1) " +
+                "   GROUP BY u");
+
+        differenceQuery.setParameter(1, Status.WITHDRAWN);
+
+        List<Object[]> usersWithoutWithdraws = differenceQuery.getResultList();
+        for(Object[] o : usersWithoutWithdraws){
+            fname = ((User) o[0]).getfName();
+            lname = ((User) o[0]).getlName();
+            programs = ((Long)o[2]);
+            checkIns = ((Long)o[1]);
+
+            System.out.println("\n" + fname + " " + lname);
+            System.out.println("Programs: " + programs);
+            System.out.println("Check-Ins: " + checkIns);
+        }
+    }
+
+    public void displayAllUnassignedExercises(){
+        String unassignedExercise;
+        String workout = "";
+        String routine = "";
+
+        Query exerciseQuery = entityManager.createQuery("" +
+                "SELECT DISTINCT e, r, w " +
+                "FROM Exercise e" +
+                "   LEFT OUTER JOIN  e.workouts w " +
+                "   LEFT OUTER JOIN w.routines r " +
+                "   WHERE r.routineName IS NULL ");
+
+        List<Objects[]> unassignedExercises = exerciseQuery.getResultList();
+        for(Object[] o : unassignedExercises){
+            unassignedExercise = ((Exercise) o[0]).getExerciseName();
+//            workout = ((Workout)o[1]).getWorkoutDescription();
+//            routine = ((Routine)o[2]).getRoutineName();
+            System.out.println(unassignedExercise + " " + workout + " " + routine);
         }
     }
 

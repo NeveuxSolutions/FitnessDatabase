@@ -105,4 +105,12 @@ public class Program {
     public void setMealPlan(MealPlan mealPlan) {
         this.mealPlan = mealPlan;
     }
+
+    public long getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(long programId) {
+        this.programId = programId;
+    }
 }
