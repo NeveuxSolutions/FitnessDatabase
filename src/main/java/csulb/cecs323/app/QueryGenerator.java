@@ -94,31 +94,99 @@ public class QueryGenerator {
         System.out.println("User " + userId + " has completed " + count + " workouts.");
     }
 
-    public void getStrongestUser(){
-        //Find the strongest user(s) by total weight lifted and list the programs and routines he has done
-        String fname, lname, exerciseName;
+    public void getProgramsUsedBy20YearOlds(){
+        String fname;
+        String lname;
+        String program;
+        String routine;
 
-        Query strongQuery = entityManager.createQuery("" +
-                "SELECT u,e FROM User u" +
-                "       LEFT OUTER JOIN u.programs p" +
-                "       LEFT OUTER JOIN p.routine r" +
-                "       LEFT OUTER JOIN r.workouts w" +
-                "       LEFT OUTER JOIN w.exercises e");
+        Query youngQuery = entityManager.createQuery("" +
+                "SELECT DISTINCT u,p,r " +
+                "FROM User u " +
+                    "INNER JOIN u.programs p " +
+                    "INNER JOIN p.routine r " +
+                    "   WHERE EXISTS (" +
+                            "SELECT u2.age " +
+                                "FROM User u2 "+
+                        "           WHERE u.age > ?1 AND u.age < ?2)");
 
-        List<Object[]> strongList = strongQuery.getResultList();
+        youngQuery.setParameter(1, 19);
+        youngQuery.setParameter(2, 30);
 
-        for(Object[] o : strongList) {
+        List<Object[]> programList = youngQuery.getResultList();
+        for(Object[] o: programList){
             fname = ((User) o[0]).getfName();
             lname = ((User) o[0]).getlName();
-            exerciseName = ((Exercise) o[1]).getExerciseName();
-            System.out.println(fname + " " + lname + " " + exerciseName);
+            program = ((Program) o[1]).getProgramGoal().toString();
+            routine = ((Routine) o[2]).getRoutineName();
+
+            System.out.println("\nUser: " +fname + " " + lname);
+            System.out.println("Program Goal: " + program);
+            System.out.println("Routine Name: " + routine);
         }
     }
 
-    public void getMealPlanByCalorie(){
+    public void getDiabeticPrograms(){
+        String mealPlanName;
+        String fname;
+        String lname;
+        String program;
+
+        Query mealQuery = entityManager.createQuery("" +
+            "SELECT DISTINCT mp, p, u " +
+                "FROM MealPlan mp" +
+                "   INNER JOIN  mp.program p " +
+                "   INNER JOIN p.client u " +
+                "   WHERE mp.mealPlanId IN (" +
+                        "SELECT mp2.mealPlanId " +
+                            "FROM MealPlan mp2 " +
+                            "    INNER JOIN mp2.program p " +
+                            "    WHERE p.programDescription LIKE :code)");
+
+        mealQuery.setParameter("code", "%" + "Diabetic" + "%");
+        List<Object[]> mealList = mealQuery.getResultList();
+
+        for(Object[] o : mealList) {
+            mealPlanName = ((MealPlan) o[0]).getMealPlanName();
+            fname = ((User) o[2]).getfName();
+            lname = ((User) o[2]).getlName();
+            program = ((Program) o[1]).getProgramDescription();
+
+            System.out.println("\nUser: " +fname + " " + lname);
+            System.out.println("Program Description: " + program);
+            System.out.println("Meal Plan Name: " + mealPlanName);
+        }
     }
 
-    public void getAverageWeightLoss(){
+    public void getShortestUser(){
+        String mealPlanName;
+        String fname;
+        String lname;
+        String program;
+        double height;
+
+        Query shortQuery = entityManager.createQuery("" +
+            "SELECT DISTINCT u, p, mp " +
+                "FROM User u" +
+                "   INNER JOIN  u.programs p " +
+                "   INNER JOIN p.mealPlan mp " +
+                "   WHERE u.height <= ALL (" +
+                        "SELECT u2.height " +
+                            "FROM User u2)");
+
+        List<Object[]> shortUserStats = shortQuery.getResultList();
+        for(Object[] o: shortUserStats){
+            fname = ((User) o[0]).getfName();
+            lname = ((User) o[0]).getlName();
+            height = ((User) o[0]).getHeight();
+            program = ((Program) o[1]).getProgramDescription();
+            mealPlanName = ((MealPlan) o[2]).getMealPlanName();
+
+            System.out.println("\nUser:" +fname + " " + lname);
+            System.out.println("Height in inches: " + height);
+            System.out.println("Program Description: " +program);
+            System.out.println("Meal Plan Name: " + mealPlanName);
+        }
     }
 
     public void userMealPlans() {

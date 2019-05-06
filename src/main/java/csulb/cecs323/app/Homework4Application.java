@@ -73,8 +73,8 @@ public class Homework4Application {
                    "3. Remove a user\n" +
                    "4. Count the number of workouts a specific user has done.\n" +
                    "5. Retrieve the user who has lifted the most total weight\n" +
-                   "6. Retrieve meal plans based on their calorie count.\n" +
-                   "7. Retrieve the average weight loss for all users.\n" +
+                   "6. Retrieve individuals on a program for diabetics and their diet.\n" +
+                   "7. Retrieve the shortest user's program and their diet.\n" +
                    "8. Quit");
 
            userInput = Integer.parseInt(in.next());
@@ -118,15 +118,13 @@ public class Homework4Application {
                    //Count the number of workouts a specific user has done.
                    break;
                case 5:
-                   //Retrieve the user who has lifted the most total weight
-                   queryGenerator.getStrongestUser();
+                   queryGenerator.getProgramsUsedBy20YearOlds();
                    break;
                case 6:
-                   System.out.println("\nPlease enter desired number of average calories"); //want to just provide a numbered list of calorie totals
-                   //Retrieve meal plans based on their calorie count.
+                   queryGenerator.getDiabeticPrograms();
                    break;
                case 7:
-                  //Retrieve the average weight loss for all users
+                   queryGenerator.getShortestUser();
                    break;
                case 8:
                    System.exit(0);
