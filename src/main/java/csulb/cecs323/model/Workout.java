@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.constraints.*;
-import java.sql.Date;
 
 @Entity
 @Table(
@@ -21,11 +20,6 @@ public class Workout {
     private String workoutDescription;
     @Min(1) @Max(7)
     private int day;
-    @Column(nullable=false)
-    Date statusDate;
-
-    @Enumerated @Column(nullable=false)
-    Status status;
 
     @ManyToMany(mappedBy = "workouts")
     private Set<Cardio> cardioExercises = new HashSet<>();
@@ -119,21 +113,5 @@ public class Workout {
 
     public void addExercise(Exercise exercise){
         exercises.add(exercise);
-    }
-
-    public Date getStatusDate() {
-        return statusDate;
-    }
-
-    public void setStatusDate(Date statusDate) {
-        this.statusDate = statusDate;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 }

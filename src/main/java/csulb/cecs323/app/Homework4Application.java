@@ -38,7 +38,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-       initializeDatabase();
+      // initializeDatabase();
        displayUserInterface();
    }
 
@@ -68,7 +68,7 @@ public class Homework4Application {
                    "1. Display trends a trainer should monitor.\n" +
                    "2. Create a new check-in \n" +
                    "3. Remove a user\n" +
-                   "4. Count the number of workouts a specific user has done.\n" +
+                   "4. Count the number of workouts a specific user been assigned.\n" +
                    "5. Retrieve programs with only users who are in their 20s\n" +
                    "6. Retrieve individuals on a program for diabetics and their diet.\n" +
                    "7. Retrieve the shortest user's program and their diet.\n" +

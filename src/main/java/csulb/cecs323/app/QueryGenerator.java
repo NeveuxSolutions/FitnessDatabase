@@ -60,11 +60,10 @@ public class QueryGenerator {
             userId = in.nextInt();
         }
 
-        Query countQuery = entityManager.createQuery("SELECT COUNT(w.workoutId) FROM User u INNER JOIN Program p ON u= p.client INNER JOIN Routine r ON  p=r.program INNER JOIN Workout w WHERE u.userId = ?1 AND w.status = ?2");
+        Query countQuery = entityManager.createQuery("SELECT COUNT(w.workoutId) FROM User u INNER JOIN Program p ON u= p.client INNER JOIN Routine r ON  p=r.program INNER JOIN Workout w WHERE u.userId = ?1");
         countQuery.setParameter(1, userId);
-        countQuery.setParameter(2, Status.COMPLETED);
         long count = (Long) countQuery.getSingleResult();
-        System.out.println("User " + userId + " has completed " + count + " workouts.");
+        System.out.println("User " + userId + " has been assigned " + count + " workouts.");
     }
 
     /**
