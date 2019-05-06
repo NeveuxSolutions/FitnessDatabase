@@ -93,7 +93,7 @@ public class Homework4Application {
                            queryGenerator.getMealPlansWith6OrLessMeals();
                            break;
                        case 2:
-                           queryGenerator.findAverageWeight();
+                           queryGenerator.findTimeEaten();
                            //Retrieve all exercises that are not assigned to a workout
                            break;
                        case 3:

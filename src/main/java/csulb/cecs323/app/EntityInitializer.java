@@ -161,11 +161,11 @@ public class EntityInitializer {
                 {"Chicken Breast", "Eggs", "Almonds", "Oats", "Cottage Cheese",
                 "Greek Yogurt", "Milk", "Broccoli", "Lean Beef", "Tuna",
                 "Quinoa", "Whey Protein", "Ground Turkey", "Salmon", "Shrimp",
-                "Brussels Sprout", "Cashews"};
+                "Brussels Sprout", "Cashews", "CatFish"};
 
-        double[] fat = {0.03, .11, .49, .01, .04, .00, .01, .00, .15, .00, .01, .01, .1, .13, 0.3, .00, .44};
-        double[] carb = {0.00, 0.01, .22, .12, .03, .03, .05, .07, .00, .00, .21, .06, .00, .00, .02, .09, .30};
-        double[] protein = {.31, .13, .21, .02, .11, .1, .03, .03, .26, .25, .04, .75, .27, .20, .24, .03, .18};
+        double[] fat = {0.03, .11, .49, .01, .04, .00, .01, .00, .15, .00, .01, .01, .1, .13, 0.3, .00, .44, .00};
+        double[] carb = {0.00, 0.01, .22, .12, .03, .03, .05, .07, .00, .00, .21, .06, .00, .00, .02, .09, .30, .00};
+        double[] protein = {.31, .13, .21, .02, .11, .1, .03, .03, .26, .25, .04, .75, .27, .20, .24, .03, .18, .34};
 
 
         for (int i = 0; i < food_list.length; i++) {

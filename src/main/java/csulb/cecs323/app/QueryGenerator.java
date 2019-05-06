@@ -204,7 +204,13 @@ public class QueryGenerator {
      * Query to find average number of meals a user eats
      */
     public void findAverageNumMeals() {
-        Query query = entityManager.createQuery("SELECT u.fName, u.lName, AVG(mp.numberOfMeals) FROM User u INNER JOIN Program p ON u=p.client INNER JOIN MealPlan mp ON mp=p.mealPlan GROUP BY u.fName, u.lName, mp.numberOfMeals");
+        Query query = entityManager.createQuery(
+                "SELECT u.fName, u.lName, AVG(mp.numberOfMeals) " +
+                        "FROM User u " +
+                        "INNER JOIN Program p ON u=p.client " +
+                        "INNER JOIN MealPlan mp ON mp=p.mealPlan " +
+                        "GROUP BY u.fName, u.lName, mp.numberOfMeals");
+
         List<Object[]> results = query.getResultList();
         for (Object[] o : results) {
             System.out.println(o[0] + " " + o[1] + " " + o[2]);
@@ -230,22 +236,37 @@ public class QueryGenerator {
     }
 
 
-    public void dumbQuery2() {
-        Query query = entityManager.createQuery("SELECT u.fName, u.lName, COUNT(r) FROM User u INNER JOIN Program p ON u=p.client INNER JOIN Routine r ON r=p.routine  WHERE r.trainingStyle = ?1 GROUP BY u.fName, u.lName");
-        query.setParameter(1, TrainingStyle.STRENGTH);
-        List<Object[]> results = query.getResultList();
-        for (Object[] o : results) {
-            System.out.println(o[0] + " " + o[1] + " COUNT " + o[2]);
+    /**
+     * Query to find the number of meals each food is assigned to
+     */
+    public void findFood() {
+        Query query = entityManager.createQuery(
+                "SELECT f.name, COUNT(m.mealName) " +
+                        "FROM Food f " +
+                        "LEFT JOIN CaloricTotal c ON c.food=f " +
+                        "LEFT JOIN Meal m ON m=c.meal " +
+                        "GROUP BY f.name");
+
+        List<Object[] > list = query.getResultList();
+        for (Object[] o : list) {
+            System.out.println(o[0] + " " + o[1]);
         }
     }
 
-    public void query() {
-        // GET body weight exercise
-        Query query = entityManager.createQuery("SELECT e.exerciseName FROM Exercise e WHERE e.exerciseType = ?1");
-        query.setParameter(1, ExerciseType.BODYWEIGHT);
-        List<String > list = query.getResultList();
-        for (String o : list) {
-            System.out.println(o);
+    /**
+     * Query to find the time each food is eaten. If null then not eaten
+     */
+    public void findTimeEaten() {
+        Query query = entityManager.createQuery(
+                "SELECT f.name, COALESCE(MAX(m.timeEaten), 'Not Eaten') " +
+                        "FROM Food f " +
+                        "LEFT JOIN CaloricTotal c ON c.food=f " +
+                        "LEFT JOIN Meal m ON m=c.meal " +
+                        "GROUP BY f.name");
+
+        List<Object[] > list = query.getResultList();
+        for (Object[] o : list) {
+            System.out.println(o[0] + " " + o[1]);
         }
     }
 
