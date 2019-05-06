@@ -15,9 +15,6 @@
 
       <!-- MySQL Driver -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-
-      <!-- TODO: fill in below the appropriate database, username and password -->
-
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://cecs-db01.coe.csulb.edu:3306/cecs323sec1g1?serverTimezone=UTC" />
       <property name="javax.persistence.jdbc.user" value="cecs323sec1s10" />
       <property name="javax.persistence.jdbc.password" value="MouWai" />
@@ -27,8 +24,8 @@
       <!-- to create the tables:  create-tables -->
       <!-- to do nothing (use what's in the DBMS):  none -->
       <!-- See: https://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_ddl_generation.htm#BABHEJJI -->
-      <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
-      <property name="eclipselink.ddl-generation" value="none" />
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+      <!--<property name="eclipselink.ddl-generation" value="none" />-->
 
       <!-- SEE: https://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_ddl_generation_output_mode.htm -->
       <property name="eclipselink.ddl-generation.output-mode" value="database" />

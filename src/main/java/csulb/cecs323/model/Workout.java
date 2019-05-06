@@ -9,6 +9,9 @@ import javax.validation.constraints.*;
 import java.sql.Date;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"workoutDescription"})
+)
 public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int workoutId;

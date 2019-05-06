@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Generates all queries to the database
+ */
 public class QueryGenerator {
     private EntityManager entityManager;
 

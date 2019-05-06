@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
- * Is responsible for creating entries in the Database.
+ * Is responsible for creating non-initialized entries in the Database.
  */
 public class EntityCreator {
     private static final Logger LOGGER =  Logger.getLogger(Homework4Application.class.getName());

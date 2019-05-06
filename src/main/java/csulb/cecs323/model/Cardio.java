@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 @Entity
 @Table(
-        uniqueConstraints = @UniqueConstraint(columnNames={"duration", "cardioType", "cardioActivity"})
+        uniqueConstraints = @UniqueConstraint(columnNames={"duration", "cardioActivity"})
 )
 public class Cardio {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

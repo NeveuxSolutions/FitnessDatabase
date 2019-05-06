@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"exerciseName", "repCount", "setCount"})
+)
 public class Exercise {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long exerciseId;

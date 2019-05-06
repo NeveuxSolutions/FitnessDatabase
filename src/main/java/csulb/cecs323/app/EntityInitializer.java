@@ -1,8 +1,6 @@
 package csulb.cecs323.app;
 
 import csulb.cecs323.model.*;
-import org.omg.PortableInterceptor.DISCARDING;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -12,10 +10,12 @@ import static csulb.cecs323.model.CardioActivity.*;
 import static csulb.cecs323.model.CardioType.*;
 import static csulb.cecs323.model.ProgramGoal.*;
 import static csulb.cecs323.model.Status.*;
-
 import java.util.Random;
 import java.util.logging.Logger;
 
+/**
+ * Initializes all database entries
+ */
 public class EntityInitializer {
     private static final Logger LOGGER =  Logger.getLogger(Homework4Application.class.getName());
     private EntityManager entityManager;

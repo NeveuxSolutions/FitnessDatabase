@@ -19,9 +19,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
- * A simple application to demonstrate how to persist an object in JPA.
- *
- * This is for demonstration and educational purposes only.
+ * A not so simple application for tracking fitness for individuals
  */
 public class Homework4Application {
    private EntityManager entityManager;
@@ -40,7 +38,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-//       initializeDatabase();
+       initializeDatabase();
        displayUserInterface();
    }
 
@@ -57,7 +55,6 @@ public class Homework4Application {
         initializer.initializePrograms();
     }
 
-    //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
     private void displayUserInterface(){
        Scanner in = new Scanner(System.in);
        int userInput;
@@ -141,7 +138,7 @@ public class Homework4Application {
        LOGGER.fine("Creating EntityManagerFactory and EntityManager");
        EntityManagerFactory factory = Persistence.createEntityManagerFactory("homework4_PU");
        EntityManager manager = factory.createEntityManager();
-       System.out.println("It's running I just disabled all the db messages\n");
+       System.out.println("Program started...currently loading the database\n");
 
        Homework4Application hw4application = new Homework4Application(manager);
        hw4application.startApplication();
