@@ -14,7 +14,6 @@ package csulb.cecs323.app;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -73,10 +72,10 @@ public class Homework4Application {
                    "2. Create a new check-in \n" +
                    "3. Remove a user\n" +
                    "4. Count the number of workouts a specific user has done.\n" +
-                   "5. Retrieve programs used by users in their 20s\n" +
+                   "5. Retrieve programs with only users who are in their 20s\n" +
                    "6. Retrieve individuals on a program for diabetics and their diet.\n" +
                    "7. Retrieve the shortest user's program and their diet.\n" +
-                   "8. Retrieve all users who have never withdrawn from a program and the date of their first check-in.\n" +
+                   "8. Retrieve all users who have never withdrawn from a program and the number of programs/checkins they've had.\n" +
                    "9. Quit");
 
            userInput = Integer.parseInt(in.next());
@@ -129,7 +128,7 @@ public class Homework4Application {
                    queryGenerator.getShortestUser();
                    break;
                case 8:
-                   queryGenerator.setDifference();
+                   queryGenerator.findUnflappableUsers();
                    break;
                case 9:
                    System.exit(0);

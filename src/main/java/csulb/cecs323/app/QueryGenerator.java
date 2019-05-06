@@ -13,38 +13,9 @@ public class QueryGenerator {
     public QueryGenerator(EntityManager entityManager){
         this.entityManager = entityManager;
     }
-
-    public void trialJoins(){
-//        only selects distinct users so no casting is necessary
-
-//        Query query = entityManager.createQuery("SELECT DISTINCT u FROM User u INNER JOIN u.checkIns c");
-//        List<User> resultList = query.getResultList();
-//        for( User u:resultList){
-//            System.out.print(u.getfName());
-//            System.out.print(u.getlName());
-//            System.out.println(u.getUserId());
-//        }
-
-//        combines two tables into one, requires casting to access individual attributes
-        Query query = entityManager.createQuery("SELECT u,c FROM User u INNER JOIN u.checkIns c");
-        List<Object[]> resultList = query.getResultList();
-        for(Object[] o : resultList) {
-            User u = (User) o[0];
-            CheckIn c = (CheckIn) o[1];
-            System.out.println(u.getfName() +" " + u.getlName() + " " + c.getCheckInTimeStamp() + " Bodyfat: " + c.getBodyFat());
-
-        }
-//        simple left join no nulls to test on currently, dont want to break shit
-//        Query query = entityManager.createQuery("SELECT u,c FROM User u LEFT JOIN u.checkIns c");
-//        List<Object[]> resultList = query.getResultList();
-//        for(Object[] o : resultList) {
-//            User u = (User) o[0];
-//            CheckIn c = (CheckIn) o[1];
-//            System.out.println(u.getfName() +" " + u.getlName() + " " + c.getCheckInTimeStamp() + " Bodyfat: " + c.getBodyFat());
-//
-//        }
-    }
-
+    /**
+     * Query to find meal plans with 6 or less meals
+     */
     public void getMealPlansWith6OrLessMeals(){
         Query query = entityManager.createQuery("SELECT u,p,mp FROM User u INNER JOIN u.programs p INNER JOIN  p.mealPlan mp");
         List<Object[]> resultList = query.getResultList();
@@ -55,7 +26,6 @@ public class QueryGenerator {
             System.out.println(u.getfName() +" " + u.getlName() + " " + p.getProgramDescription() + " meal plan # meals: " + mp.getNumberOfMeals());
 
         }
-
     }
 
     public void getUnassignedWorkouts(){
@@ -94,6 +64,9 @@ public class QueryGenerator {
         System.out.println("User " + userId + " has completed " + count + " workouts.");
     }
 
+    /**
+     * Query to find programs with only 20 year old users
+     */
     public void getProgramsUsedBy20YearOlds(){
         String fname;
         String lname;
@@ -125,7 +98,9 @@ public class QueryGenerator {
             System.out.println("Routine Name: " + routine);
         }
     }
-
+    /**
+     * Query to find programs for diabetics
+     */
     public void getDiabeticPrograms(){
         String mealPlanName;
         String fname;
@@ -157,7 +132,9 @@ public class QueryGenerator {
             System.out.println("Meal Plan Name: " + mealPlanName);
         }
     }
-
+    /**
+     * Query to find the shortest user and their program
+     */
     public void getShortestUser(){
         String mealPlanName;
         String fname;
@@ -269,7 +246,10 @@ public class QueryGenerator {
         }
     }
 
-    public void setDifference(){
+    /**
+     * Query to find the users that have never resigned a program
+     */
+    public void findUnflappableUsers(){
         String fname;
         String lname;
         long programs;
@@ -298,27 +278,6 @@ public class QueryGenerator {
             System.out.println("\n" + fname + " " + lname);
             System.out.println("Programs: " + programs);
             System.out.println("Check-Ins: " + checkIns);
-        }
-    }
-
-    public void displayAllUnassignedExercises(){
-        String unassignedExercise;
-        String workout = "";
-        String routine = "";
-
-        Query exerciseQuery = entityManager.createQuery("" +
-                "SELECT DISTINCT e, r, w " +
-                "FROM Exercise e" +
-                "   LEFT OUTER JOIN  e.workouts w " +
-                "   LEFT OUTER JOIN w.routines r " +
-                "   WHERE r.routineName IS NULL ");
-
-        List<Objects[]> unassignedExercises = exerciseQuery.getResultList();
-        for(Object[] o : unassignedExercises){
-            unassignedExercise = ((Exercise) o[0]).getExerciseName();
-//            workout = ((Workout)o[1]).getWorkoutDescription();
-//            routine = ((Routine)o[2]).getRoutineName();
-            System.out.println(unassignedExercise + " " + workout + " " + routine);
         }
     }
 
