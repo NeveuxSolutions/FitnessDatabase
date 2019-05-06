@@ -1,8 +1,5 @@
 package csulb.cecs323.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 //Tempo breakdown
 // Eccentric    lowering weight
 // Stretch      bottom position

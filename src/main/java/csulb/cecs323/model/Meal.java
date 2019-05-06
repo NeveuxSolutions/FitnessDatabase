@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
-//@Table(
-//    uniqueConstraints = @UniqueConstraint(columnNames={"mealName"})
-//)
+@Table(
+    uniqueConstraints = @UniqueConstraint(columnNames={"mealName"})
+)
 public class Meal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealId;

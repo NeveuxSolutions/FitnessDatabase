@@ -111,7 +111,8 @@ public class EntityCreator {
         Query workoutQuery = entityManager.createQuery("SELECT w.workoutId FROM Workout w");
         List<Integer> workoutList = workoutQuery.getResultList();
 
-        System.out.println("Please enter the workoutId to be removed or 0 to return to main menu.");
+        System.out.println("Warning, removing a workout will also remove any associated routines and programs!\n"+
+                            "Please enter the workoutId to be removed or 0 to return to main menu.");
         workoutId = in.nextInt();
         //check user input is valid
         while (!workoutList.contains(workoutId) | workoutId == 0){

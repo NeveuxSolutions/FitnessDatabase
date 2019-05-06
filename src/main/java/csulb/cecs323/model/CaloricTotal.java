@@ -50,11 +50,6 @@ public class CaloricTotal implements Serializable {
                 Objects.equals(meal.getMealName(), that.meal.getMealName()) &&
                 Objects.equals(totalCalories, that.totalCalories);
     }
-    //@TODO wtf
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(food.getName(), meal.getMealName(), totalCalories);
-//    }
 
     public int getQuantity() {
         return quantity;

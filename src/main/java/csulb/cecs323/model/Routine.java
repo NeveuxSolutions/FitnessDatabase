@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"routineName"})
+)
 public class Routine {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routineId;

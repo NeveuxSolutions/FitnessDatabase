@@ -286,7 +286,6 @@ public class EntityInitializer {
                 DietGoal.FAT_LOSS, DietGoal.BULKING
         };
 
-        //@TODO This is trash. Just trying to test
         for (int i = 0; i < users.length; i++) {
 
             //Create Meal Plan Object
@@ -320,7 +319,7 @@ public class EntityInitializer {
         String[] names = {
                 "Strength training for swimmers", "Body building contest preparation",
                 "NFL combine preparation", "Hip rehabilitation with strength focus",
-                "Body building contest preparation", "Triathalon endurance preparation",
+                "Body building contest post recovery", "Triathalon endurance preparation",
                 "NHL off-season general programming", "Strength training for senior citizens",
                 "Agility and endurance for curling amateurs", "Gymnastic strength programming",
                 "General youth strength training", "Post acl-tear rehabilitation",

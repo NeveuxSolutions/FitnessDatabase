@@ -1,10 +1,12 @@
 package csulb.cecs323.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"name"})
+)
 public class Food {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int foodId;

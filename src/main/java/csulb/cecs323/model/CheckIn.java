@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"checkInTimeStamp"})
+)
 public class CheckIn {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int checkInId;

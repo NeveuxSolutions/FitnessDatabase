@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"mealPlanName"})
+)
 public class MealPlan {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanId;

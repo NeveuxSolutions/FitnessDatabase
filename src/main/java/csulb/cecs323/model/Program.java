@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames={"startDate", "endDate", "programDescription"})
+)
 public class Program {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long programId;

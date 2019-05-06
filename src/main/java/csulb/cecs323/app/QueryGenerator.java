@@ -20,7 +20,12 @@ public class QueryGenerator {
      * Query to find meal plans with 6 or less meals
      */
     public void getMealPlansWith6OrLessMeals(){
-        Query query = entityManager.createQuery("SELECT u,p,mp FROM User u INNER JOIN u.programs p INNER JOIN  p.mealPlan mp");
+        Query query = entityManager.createQuery("" +
+                "SELECT u,p,mp " +
+                "FROM User u " +
+                "INNER JOIN u.programs p " +
+                "INNER JOIN  p.mealPlan mp");
+
         List<Object[]> resultList = query.getResultList();
         for(Object[] o : resultList) {
             User u = (User) o[0];
@@ -45,7 +50,13 @@ public class QueryGenerator {
             userId = in.nextInt();
         }
 
-        Query countQuery = entityManager.createQuery("SELECT COUNT(w.workoutId) FROM User u INNER JOIN Program p ON u= p.client INNER JOIN Routine r ON  p=r.program INNER JOIN Workout w WHERE u.userId = ?1");
+        Query countQuery = entityManager.createQuery("" +
+                "SELECT COUNT(w.workoutId) " +
+                "FROM User u " +
+                    "INNER JOIN Program p ON u= p.client " +
+                    "INNER JOIN Routine r ON  p=r.program " +
+                    "INNER JOIN Workout w WHERE u.userId = ?1");
+
         countQuery.setParameter(1, userId);
         long count = (Long) countQuery.getSingleResult();
         System.out.println("User " + userId + " has been assigned " + count + " workouts.");
@@ -169,11 +180,11 @@ public class QueryGenerator {
      */
     public void findAverageNumMeals() {
         Query query = entityManager.createQuery(
-                "SELECT u.fName, u.lName, AVG(mp.numberOfMeals) " +
-                        "FROM User u " +
-                        "INNER JOIN Program p ON u=p.client " +
-                        "INNER JOIN MealPlan mp ON mp=p.mealPlan " +
-                        "GROUP BY u.fName, u.lName, mp.numberOfMeals");
+        "SELECT u.fName, u.lName, AVG(mp.numberOfMeals) " +
+                "FROM User u " +
+                "INNER JOIN Program p ON u=p.client " +
+                "INNER JOIN MealPlan mp ON mp=p.mealPlan " +
+                "GROUP BY u.fName, u.lName, mp.numberOfMeals");
 
         List<Object[]> results = query.getResultList();
         for (Object[] o : results) {
@@ -186,12 +197,12 @@ public class QueryGenerator {
      */
     public void findAverageWeight() {
         Query query = entityManager.createQuery(
-                "SELECT u.fName, u.lName, AVG(c.weight)" +
-                        "FROM CheckIn c " +
-                        "INNER JOIN User u ON u=c.userId " +
-                        "INNER JOIN Program p ON u=p.client " +
-                        "GROUP BY u.fName, u.lName, c.bodyFat, c.weight " +
-                        "HAVING c.bodyFat > 15");
+        "SELECT u.fName, u.lName, AVG(c.weight)" +
+                "FROM CheckIn c " +
+                "INNER JOIN User u ON u=c.userId " +
+                "INNER JOIN Program p ON u=p.client " +
+                "GROUP BY u.fName, u.lName, c.bodyFat, c.weight " +
+                "HAVING c.bodyFat > 15");
 
         List<Object[] > list = query.getResultList();
         for (Object[] o : list) {
@@ -205,11 +216,11 @@ public class QueryGenerator {
      */
     public void findFood() {
         Query query = entityManager.createQuery(
-                "SELECT f.name, COUNT(m.mealName) " +
-                        "FROM Food f " +
-                        "LEFT JOIN CaloricTotal c ON c.food=f " +
-                        "LEFT JOIN Meal m ON m=c.meal " +
-                        "GROUP BY f.name");
+        "SELECT f.name, COUNT(m.mealName) " +
+                "FROM Food f " +
+                "LEFT JOIN CaloricTotal c ON c.food=f " +
+                "LEFT JOIN Meal m ON m=c.meal " +
+                "GROUP BY f.name");
 
         List<Object[] > list = query.getResultList();
         for (Object[] o : list) {
@@ -224,13 +235,13 @@ public class QueryGenerator {
     public void findTimeEaten() {
 
         Query query = entityManager.createQuery(
-                "SELECT f.name, COUNT(m), COALESCE(mp.dietDescription, 'No MealPlan') " +
-                        "FROM Food f " +
-                        "LEFT OUTER JOIN f.caloricTotals c " +
-                        "LEFT OUTER JOIN c.meal m " +
-                        "LEFT OUTER JOIN m.mealPlans mp " +
-                        "WHERE mp.mealPlanId IS NULL " +
-                        "GROUP BY f.name"
+        "SELECT f.name, COUNT(m), COALESCE(mp.dietDescription, 'No MealPlan') " +
+                "FROM Food f " +
+                "LEFT OUTER JOIN f.caloricTotals c " +
+                "LEFT OUTER JOIN c.meal m " +
+                "LEFT OUTER JOIN m.mealPlans mp " +
+                "WHERE mp.mealPlanId IS NULL " +
+                "GROUP BY f.name"
         );
 
         List<Object[] > list = query.getResultList();
@@ -249,15 +260,15 @@ public class QueryGenerator {
         long checkIns;
 
         Query differenceQuery = entityManager.createQuery("" +
-                "SELECT DISTINCT u, Count(c), Count(p) " +
-                "FROM User u" +
-                "   LEFT JOIN u.checkIns c " +
-                "   LEFT JOIN u.programs p " +
-                "   WHERE p.status NOT IN (" +
-                "       SELECT p2.status" +
-                "       FROM Program p2" +
-                "           WHERE p2.status = ?1) " +
-                "   GROUP BY u");
+            "SELECT DISTINCT u, Count(c), Count(p) " +
+            "FROM User u" +
+            "   LEFT JOIN u.checkIns c " +
+            "   LEFT JOIN u.programs p " +
+            "   WHERE p.status NOT IN (" +
+            "       SELECT p2.status" +
+            "       FROM Program p2" +
+            "           WHERE p2.status = ?1) " +
+            "   GROUP BY u");
 
         differenceQuery.setParameter(1, Status.WITHDRAWN);
 
