@@ -40,7 +40,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-       //initializeDatabase();
+//       initializeDatabase();
        displayUserInterface();
    }
 
@@ -53,8 +53,8 @@ public class Homework4Application {
         initializer.initializeWorkouts();
         initializer.initializeExercises();
         initializer.initializeCardio();
-        initializer.initializePrograms();
         initializer.initializeMealPlan();
+        initializer.initializePrograms();
     }
 
     //@TODO error handling for user input in sub menus (Monge enters invalid userID or something)
@@ -93,7 +93,7 @@ public class Homework4Application {
                            queryGenerator.getMealPlansWith6OrLessMeals();
                            break;
                        case 2:
-                           queryGenerator.userMealPlans();
+                           queryGenerator.query();
                            //Retrieve all exercises that are not assigned to a workout
                            break;
                        case 3:

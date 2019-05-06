@@ -67,7 +67,6 @@ public class MealPlan {
         this.dietGoal = dietGoal;
     }
 
-
     public void setMeal(Meal meal) { this.meals.add(meal); }
 
     public List<Meal> getMeals() {

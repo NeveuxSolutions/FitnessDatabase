@@ -305,7 +305,6 @@ public class EntityInitializer {
             }
 
             mealPlan.setNumberOfMeals();
-            mealPlan.setProgram(programs[i]);
             mealPlans[i] = mealPlan;
             entityManager.persist(mealPlan);
         }
