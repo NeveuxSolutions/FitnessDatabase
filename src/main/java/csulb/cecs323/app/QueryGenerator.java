@@ -64,6 +64,7 @@ public class QueryGenerator {
         countQuery.setParameter(1, userId);
         long count = (Long) countQuery.getSingleResult();
         System.out.println("User " + userId + " has been assigned " + count + " workouts.");
+
     }
 
     /**
@@ -232,19 +233,24 @@ public class QueryGenerator {
     }
 
     /**
-     * Query to find the time each food is eaten. If null then not eaten
+     * Query to find what foods are assigned to meals but arent assigned to meal plans
+     * Counts the number of meals that the food is assigned to which aren't assigned to meal plans
      */
     public void findTimeEaten() {
+
         Query query = entityManager.createQuery(
-                "SELECT f.name, COALESCE(MAX(m.timeEaten), 'Not Eaten') " +
+                "SELECT f.name, COUNT(m), COALESCE(mp.dietDescription, 'No MealPlan') " +
                         "FROM Food f " +
-                        "LEFT JOIN CaloricTotal c ON c.food=f " +
-                        "LEFT JOIN Meal m ON m=c.meal " +
-                        "GROUP BY f.name");
+                        "LEFT OUTER JOIN f.caloricTotals c " +
+                        "LEFT OUTER JOIN c.meal m " +
+                        "LEFT OUTER JOIN m.mealPlans mp " +
+                        "WHERE mp.mealPlanId IS NULL " +
+                        "GROUP BY f.name"
+        );
 
         List<Object[] > list = query.getResultList();
         for (Object[] o : list) {
-            System.out.println(o[0] + " " + o[1]);
+            System.out.println(o[0] + " " + o[1] + " " + o[2]);
         }
     }
 
