@@ -13,14 +13,13 @@ import java.util.logging.Logger;
 /**
  * Is responsible for creating non-initialized entries in the Database.
  */
-public class EntityCreator {
+public class EntityEditor {
     private static final Logger LOGGER =  Logger.getLogger(Homework4Application.class.getName());
     private EntityManager entityManager;
 
-    public EntityCreator(EntityManager entityManager){
+    public EntityEditor(EntityManager entityManager){
         this.entityManager = entityManager;
     }
-
 
     public void createCheckInFromConsole(){
         Scanner in = new Scanner(System.in);
@@ -156,6 +155,4 @@ public class EntityCreator {
         entityManager.remove(workout);
         tx.commit();
     }
-
-
 }

@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class Homework4Application {
    private EntityManager entityManager;
-   private EntityCreator creator;
+   private EntityEditor editor;
    private EntityInitializer initializer;
    private QueryGenerator queryGenerator;
 
@@ -34,7 +34,7 @@ public class Homework4Application {
    }
 
    public void startApplication(){
-       creator = new EntityCreator(entityManager);
+       editor = new EntityEditor(entityManager);
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
@@ -103,10 +103,10 @@ public class Homework4Application {
                    break;
                case 2:
                    //create a new check-in
-                   creator.createCheckInFromConsole();
+                   editor.createCheckInFromConsole();
                    break;
                case 3:
-                   creator.removeWorkoutFromConsole();
+                   editor.removeWorkoutFromConsole();
                    break;
                case 4:
                  //do we need this one?
