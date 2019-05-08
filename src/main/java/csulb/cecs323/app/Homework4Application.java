@@ -75,7 +75,7 @@ public class Homework4Application {
                    "\nPlease enter the number corresponding to the action you would like to take and press enter\n" +
                    "1. Display trends.\n" +
                    "2. Create a new check-in \n" +
-                   "3. Remove a workout from a routine\n" +
+                   "3. Remove a user\n" +
                    "4. Retrieve programs with only users who are in their 20s\n" +
                    "5. Retrieve individuals on a program for diabetics and their diet.\n" +
                    "6. Retrieve the shortest user's program and their diet.\n" +
