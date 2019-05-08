@@ -61,6 +61,14 @@ public class EntityEditor {
         }
 
         //get userID
+        System.out.printf("%s |%5s| %5s|\n", "ID", "First Name", "Last Name");
+        Query user_query = entityManager.createQuery("SELECT u.userId, u.fName, u.lName FROM User u GROUP BY u.fName, u.lName ORDER BY u.userId");
+        List<Object[]> results = user_query.getResultList();
+        for(Object[] o : results) {
+            System.out.printf("%d %10s %10s", o[0], o[1], o[2]);
+            System.out.println();
+        }
+
         System.out.println("Please enter the userId for the client attending the check-in (ex:3)");
         Query query = entityManager.createQuery("SELECT u.userId FROM User u");
         List<Integer> resultList = query.getResultList();
@@ -155,4 +163,54 @@ public class EntityEditor {
         entityManager.remove(workout);
         tx.commit();
     }
+
+    /**
+     * Removes a user
+     */
+    public void removeUser(){
+        Scanner in = new Scanner(System.in);
+        int userId;
+        User user;
+        EntityTransaction tx = entityManager.getTransaction();
+        //find valid workout ids
+        Query user_query = entityManager.createQuery("SELECT u.userId FROM User u");
+        List<Integer> user_list = user_query.getResultList();
+
+        //get userID
+        System.out.printf("%s |%5s| %5s|\n", "ID", "First Name", "Last Name");
+        Query user_list_query = entityManager.createQuery("SELECT u.userId, u.fName, u.lName FROM User u GROUP BY u.fName, u.lName ORDER BY u.userId");
+        List<Object[]> results = user_list_query.getResultList();
+        for(Object[] o : results) {
+            System.out.printf("%d %10s %10s", o[0], o[1], o[2]);
+            System.out.println();
+        }
+
+        System.out.println("Warning, removing a User will also remove any associated check-ins and programs!\n"+
+                "Please enter the userId to be removed or 0 to return to main menu.");
+
+        userId = in.nextInt();
+        //check user input is valid
+        while (!user_list.contains(userId) | userId == 0){
+            if(userId == 0){
+                return;
+            }
+            System.out.println("Invalid entry, please enter a valid userId or 0 to return to main menu.");
+            userId = in.nextInt();
+        }
+
+
+        //find the workout to remove
+        Query usersQuery = entityManager.createQuery("" +
+                "SELECT u " +
+                "FROM User u " +
+                "WHERE u.userId = ?1");
+
+        usersQuery.setParameter(1, userId);
+        user = (User) usersQuery.getSingleResult();
+
+        tx.begin();
+        entityManager.remove(user);
+        tx.commit();
+    }
+
 }

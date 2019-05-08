@@ -21,7 +21,7 @@ public class Routine {
     @ManyToMany(mappedBy = "routines")
     private Set<Workout> workouts = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "programId", referencedColumnName = "programId")
     private Program program;
 
