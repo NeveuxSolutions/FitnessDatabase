@@ -12,10 +12,17 @@
 
 package csulb.cecs323.app;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import csulb.cecs323.model.CheckIn;
+import csulb.cecs323.model.User;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Scanner;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 /**
@@ -40,6 +47,7 @@ public class Homework4Application {
 
 //       initializeDatabase();
        displayUserInterface();
+
    }
 
     private void initializeDatabase(){
@@ -68,12 +76,11 @@ public class Homework4Application {
                    "1. Display dietary options.\n" +
                    "2. Create a new check-in \n" +
                    "3. Remove a workout from a routine\n" +
-                   "4. Count the number of workouts a specific user been assigned.\n" +
-                   "5. Retrieve programs with only users who are in their 20s\n" +
-                   "6. Retrieve individuals on a program for diabetics and their diet.\n" +
-                   "7. Retrieve the shortest user's program and their diet.\n" +
-                   "8. Retrieve all users who have never withdrawn from a program and the number of programs/checkins they've had.\n" +
-                   "9. Quit");
+                   "4. Retrieve programs with only users who are in their 20s\n" +
+                   "5. Retrieve individuals on a program for diabetics and their diet.\n" +
+                   "6. Retrieve the shortest user's program and their diet.\n" +
+                   "7. Retrieve all users who have never withdrawn from a program and the number of programs/checkins they've had.\n" +
+                   "8. Quit");
 
            userInput = Integer.parseInt(in.next());
            switch (userInput) {
@@ -110,22 +117,18 @@ public class Homework4Application {
                    editor.removeWorkoutFromConsole();
                    break;
                case 4:
-                 System.out.println("Not in use");
-                   //Count the number of workouts a specific user has done.
-                   break;
-               case 5:
                    queryGenerator.getProgramsUsedBy20YearOlds();
                    break;
-               case 6:
+               case 5:
                    queryGenerator.getDiabeticPrograms();
                    break;
-               case 7:
+               case 6:
                    queryGenerator.getShortestUser();
                    break;
-               case 8:
+               case 7:
                    queryGenerator.findUnflappableUsers();
                    break;
-               case 9:
+               case 8:
                    System.exit(0);
            }
        }

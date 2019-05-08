@@ -6,6 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -49,11 +50,20 @@ public class EntityEditor {
             }
         }
         //get a valid time
-        System.out.println("Please enter the time of the check-in (HH:MM)");
+        System.out.println("Please enter the time of the check-in (HH:MM) \nNOTE: Times are stored in the database as UTC" +
+                " therefore depending daylight savings\nmay appear to be up to 8 hours ahead of what a PST user would enter!");
         while (invalidTime) {
             try {
+                Calendar cal = Calendar.getInstance();
+
                 time = in.next();
                 timestamp = Timestamp.valueOf(date + " " + time + ":00");
+
+                // Daylight savings conflicts are unavoidable for
+                // historical entries without a table of daylight savings adjustments, which is beyond the scope of this
+                // programs current state. This means that the time the user inputs will not necessarily match those
+                // displayed in the database.Queries involving timestamps will be expected to convert from UTC to the users timezone.
+
                 invalidTime = false;
             } catch (Exception e) {
                 System.out.println("Please enter a valid time");
