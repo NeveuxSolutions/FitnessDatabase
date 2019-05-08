@@ -2,12 +2,9 @@ package csulb.cecs323.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Table(
@@ -78,10 +75,6 @@ public class Meal {
         return mealCalories;
     }
 
-
-    /**
-     * IDK if we need this
-     */
     public void setMealCalories() {
         double totalCalories = 0.0;
         for (CaloricTotal caloricTotal : caloricTotals) {

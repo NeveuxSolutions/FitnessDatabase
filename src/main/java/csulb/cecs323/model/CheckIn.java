@@ -6,6 +6,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
+/**
+ * Checking Table. Holds information about users checkin information
+ */
 @Entity
 @Table(
         uniqueConstraints = @UniqueConstraint(columnNames={"checkInTimeStamp"})

@@ -10,8 +10,10 @@ import java.sql.Date;
 public class Program {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long programId;
+    @Column(nullable=false)
     private Date startDate;
     private Date endDate;
+    @Column(nullable=false)
     private String programDescription;
 
     @Enumerated(EnumType.STRING)

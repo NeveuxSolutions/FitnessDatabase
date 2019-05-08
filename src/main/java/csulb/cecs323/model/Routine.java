@@ -11,6 +11,7 @@ import java.util.Set;
 public class Routine {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int routineId;
+    @Column(nullable=false)
     private String routineName;
     private String routineDescription;
 

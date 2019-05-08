@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 @Entity
 @Table(
         uniqueConstraints = @UniqueConstraint(columnNames={"duration", "cardioActivity"})

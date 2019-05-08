@@ -38,19 +38,7 @@ public class User {
      */
     public User() {}
 
-    /**
-     * Overloaded Constructor
-     * @param fname first name of user
-     * @param lname last name of user
-     */
-    public User(String fname, String lname) {
-        this.fName = fname;
-        this.lName = lname;
-        this.age = 10;
-        this.gender = Gender.FEMALE;
-        this.height = 10;
-    }
-
+    // GETTERS/SETTERS
     public void addCheckIn(CheckIn appointment){
         checkIns.add(appointment);
     }

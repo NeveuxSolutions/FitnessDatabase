@@ -46,6 +46,9 @@ public class Exercise {
         this.workouts.forEach(x -> x.getExercises().add(this));
     }
 
+    //----------------------------
+    //Getters/Setters
+    //----------------------------
     public String getExerciseName() {
         return exerciseName;
     }

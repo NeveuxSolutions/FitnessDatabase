@@ -11,6 +11,7 @@ import java.util.List;
 public class MealPlan {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mealPlanId;
+    @Column(nullable=false)
     private String mealPlanName;
     private int numberOfMeals;
     private String dietDescription;

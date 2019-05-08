@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Junction table class for food to meal
+ */
 @Entity
 public class CaloricTotal implements Serializable {
     @Transient
@@ -51,6 +54,9 @@ public class CaloricTotal implements Serializable {
                 Objects.equals(totalCalories, that.totalCalories);
     }
 
+    //----------------------------
+    //Getters/Setters
+    //----------------------------
     public int getQuantity() {
         return quantity;
     }
@@ -67,6 +73,7 @@ public class CaloricTotal implements Serializable {
         return totalCalories;
     }
 
+    //sets total calories depending upon the total carbs/protein/fats
     public void setTotalCalories() {
         this.totalCalories = (CALORIE_PROTEIN_CARB * (totalCarbs + totalProtein) + (CALORIE_FAT * totalFat));
     }
