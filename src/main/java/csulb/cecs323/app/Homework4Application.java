@@ -110,7 +110,7 @@ public class Homework4Application {
                    editor.removeWorkoutFromConsole();
                    break;
                case 4:
-                 //do we need this one?
+                 System.out.println("Not in use");
                    //Count the number of workouts a specific user has done.
                    break;
                case 5:

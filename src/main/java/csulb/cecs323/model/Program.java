@@ -5,7 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table(
-        uniqueConstraints = @UniqueConstraint(columnNames={"startDate", "endDate", "programDescription"})
+        uniqueConstraints = @UniqueConstraint(columnNames={"startDate", "programDescription"})
 )
 public class Program {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
