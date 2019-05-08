@@ -26,8 +26,8 @@ public class CheckIn {
     @Min(value = 1, message = "User can't have less than 1%BF ") @Max(value = 65, message = "User can not exceed 65%BF")
     private double bodyFat;
 
-    @JoinColumn (name="UserId")
-    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+//    @JoinColumn (name="UserId")
+    @ManyToOne
     private User userId;
 
     /**

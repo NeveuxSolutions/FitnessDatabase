@@ -1,8 +1,12 @@
 package csulb.cecs323.model;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(
@@ -28,9 +32,10 @@ public class User {
     private ExperienceLevel userExperienceLevel;
 
     // Relationships
-    @OneToMany(mappedBy="userId")
+    @OneToMany(mappedBy="userId", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private java.util.List<CheckIn> checkIns = new ArrayList<>();
-    @OneToMany(mappedBy="client") //client is the name of the fk attribute
+    @OneToMany(mappedBy="client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @CascadeOnDelete
     private java.util.List<Program> programs = new ArrayList<>();
 
     /**
@@ -46,6 +51,8 @@ public class User {
     public void addProgram(Program program){
         programs.add(program);
     }
+
+    public List<Program> getPrograms() { return this.programs; }
 
     public int getUserId() {
         return userId;

@@ -45,7 +45,7 @@ public class Homework4Application {
        initializer = new EntityInitializer(entityManager);
        queryGenerator = new QueryGenerator(entityManager);
 
-//       initializeDatabase();
+       initializeDatabase();
        displayUserInterface();
 
    }
@@ -73,7 +73,7 @@ public class Homework4Application {
        while (true) {
            System.out.println(
                    "\nPlease enter the number corresponding to the action you would like to take and press enter\n" +
-                   "1. Display dietary options.\n" +
+                   "1. Display trends.\n" +
                    "2. Create a new check-in \n" +
                    "3. Remove a workout from a routine\n" +
                    "4. Retrieve programs with only users who are in their 20s\n" +
@@ -86,7 +86,7 @@ public class Homework4Application {
            switch (userInput) {
                case 1:
                    System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
-                   System.out.println("1. Display the frequency each food is assigned.");
+                   System.out.println("1. Show how often foods are prescribed.");
                    System.out.println("2. Display the average number of meals each user eats.");
                    System.out.println("3. Find the average weight of users with body fat percentage greater than 15 percent.");
                    System.out.println("4. Return to the previous menu.");
@@ -114,7 +114,7 @@ public class Homework4Application {
                    editor.createCheckInFromConsole();
                    break;
                case 3:
-                   editor.removeWorkoutFromConsole();
+                   editor.removeUser();
                    break;
                case 4:
                    queryGenerator.getProgramsUsedBy20YearOlds();

@@ -1,5 +1,7 @@
 package csulb.cecs323.model;
 
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -22,13 +24,16 @@ public class Program {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    @CascadeOnDelete
     private User client;
 
-    @OneToOne(mappedBy = "program")
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "routineId", referencedColumnName = "routineId")
     private Routine routine;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "mealPlanId", referencedColumnName = "mealPlanId")
     private MealPlan mealPlan;
 
