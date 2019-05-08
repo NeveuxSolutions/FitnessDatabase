@@ -80,20 +80,21 @@ public class Homework4Application {
                case 1:
                    System.out.println("\nPlease press the corresponding key and then enter to take the desired action.");
                    System.out.println("1. Display the frequency each food is assigned.");
-                   System.out.println("2. Display .");
-                   System.out.println("3. Retrieve .");
+                   System.out.println("2. Display the average number of meals each user eats.");
+                   System.out.println("3. Find the average weight of users with body fat percentage greater than 15 percent.");
                    System.out.println("4. Return to the previous menu.");
                    System.out.println("5. Quit");
 
                    subMenuInput = Integer.parseInt(in.next());
                    switch (subMenuInput) {
                        case 1:
-                           queryGenerator.getMealPlansWith6OrLessMeals();
+                           queryGenerator.findFoodFrequency();
                            break;
                        case 2:
-                           queryGenerator.findTimeEaten();
+                           queryGenerator.findAverageNumMeals();
                            break;
                        case 3:
+                           queryGenerator.findAverageWeight();
                            break;
                        case 4:
                            break;

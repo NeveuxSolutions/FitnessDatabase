@@ -214,7 +214,7 @@ public class QueryGenerator {
     /**
      * Query to find the number of meals each food is assigned to
      */
-    public void findFood() {
+    public void findFoodFrequency() {
         Query query = entityManager.createQuery(
         "SELECT f.name, COUNT(m.mealName) " +
                 "FROM Food f " +
