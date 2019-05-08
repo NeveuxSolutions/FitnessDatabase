@@ -12,17 +12,8 @@
 
 package csulb.cecs323.app;
 
-import csulb.cecs323.model.CheckIn;
-import csulb.cecs323.model.User;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.Scanner;
-import java.util.TimeZone;
 import java.util.logging.Logger;
 
 /**
