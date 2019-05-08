@@ -17,7 +17,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
- * A not so simple application for tracking fitness for individuals
+ * A not so simple application for tracking fitness for individuals.
  */
 public class Homework4Application {
    private EntityManager entityManager;
