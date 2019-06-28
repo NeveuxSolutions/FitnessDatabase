@@ -1,54 +1,21 @@
 # Personal Training Database
 
-This project was built with the intent to store information about clients. Specifically, the database holds information regarding the client's checkins, meal plans, and programs. 
+This project was completed as a final assignment for CSULB CECS 323 Database class. The intent of the project was to develop a database that could be useful in a realistic environment. Specifically, this database is applicable to anyone interested in tracking their personal fitness, or for use by a personal trainer. The database keeps information regarding individuals meal plans, the food they eat, and the macronutrient breakdown of calories being consumed. On top of that, the database stores information about the users' training regimens, and all 
+
+## Diagrams
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ![Alt Text](https://github.com/NeveuxSolutions/PersonalFitnessDatabase/blob/master/docs/PersonalTrainingUMLPNG.png)
 ![Alt Text](https://github.com/NeveuxSolutions/PersonalFitnessDatabase/blob/master/docs/PersonalTrainingRDBPNG.png)
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites - Dependent Libraries
-
-First install - TinyDB
-
-```
-pip install tinydb
-```
-
-Next Install - Yagmail
-
-```
-pip install yagmail
-```
-### Installing
-
-Navigate to the desired path 
-
-```
-cd /desired_path
-```
-
-Clone the repository
-
-```
-git clone https://github.com/NeveuxSolutions/TheReminder.git
-```
-
-## Running the program
-
-Now simply run the python script
-
-```
-python reminder.py
-```
-
 ## Built With
 
-* [TinyDB](https://tinydb.readthedocs.io/en/latest/) - The database framework used
-* [Yagmail](https://buildmedia.readthedocs.org/media/pdf/yagmail/latest/yagmail.pdf) - The email framework used
+* [JPA](https://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html) - The Java ORM standard for storing, accessing, and managing Java objects in a relational database.
+* [JAVA](https://www.java.com/en/) - Primary Language
 
 ## Authors
 
-* **Spencer Neveux** - *Sole Developer* 
+* **Spencer Neveux** - *Developer* 
+* **Ian Ward** - *Developer*
+
