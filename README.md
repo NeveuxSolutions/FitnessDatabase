@@ -4,7 +4,7 @@ This project was completed as a final assignment for CSULB CECS 323 Database cla
 
 ## Diagrams
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These diagrams lay out the structure of the database. Firstly, a UML diagram was constructed to display the class relationships. The next diagram presented is a relational database scheme to illustrate the UML mappings. 
 
 ![Alt Text](https://github.com/NeveuxSolutions/FitnessDatabase/blob/master/src/main/resources/META-INF/PersonalTrainingUMLPNG.png)
 ![Alt Text](https://github.com/NeveuxSolutions/FitnessDatabase/blob/master/src/main/resources/META-INF/PersonalTrainingRDBPNG.png)
